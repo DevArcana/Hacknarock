@@ -1,17 +1,13 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Application.Persistance;
+using Application.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Application
 {
@@ -32,7 +28,7 @@ namespace Application
         {
             services.AddControllers();
             services.AddSpaStaticFiles(options => options.RootPath = "ClientApp/build");
-            services.AddSwaggerGen();
+            services.AddSwagger(Configuration);
             // services.AddPersistance(Configuration);
         }
 
@@ -44,12 +40,7 @@ namespace Application
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Application's API v1");
-                c.RoutePrefix = "api/swagger";
-            });
+            app.UseSwagger(env);
 
             app.UseHttpsRedirection();
 
