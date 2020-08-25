@@ -31,6 +31,7 @@ namespace Application
         {
             services.AddControllers();
             services.AddSpaStaticFiles(options => options.RootPath = "ClientApp/build");
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +41,13 @@ namespace Application
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Application's API v1");
+                c.RoutePrefix = "api/swagger";
+            });
 
             app.UseHttpsRedirection();
 
