@@ -33,7 +33,7 @@ namespace Application
             services.AddControllers();
             services.AddSpaStaticFiles(options => options.RootPath = "ClientApp/build");
             services.AddSwaggerGen();
-            services.AddPersistance(Configuration);
+            // services.AddPersistance(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
