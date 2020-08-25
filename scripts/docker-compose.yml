@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+    database:
+        image: postgres
+        environment: 
+            POSTGRES_PASSWORD: 'P@ssw0rd'
+        ports: 
+            - 5432:5432
