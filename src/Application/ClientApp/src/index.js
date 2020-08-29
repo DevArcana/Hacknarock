@@ -9,7 +9,6 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./theme";
 import "fontsource-roboto";
 import { BrowserRouter as Router } from "react-router-dom";
-import CustomAuth0Provider from "./authentication/auth0-provider";
 
 // import { authenticate, getUser, createUser, isAuthenticated } from './authentication/StupidAuth';
 
@@ -36,12 +35,10 @@ import CustomAuth0Provider from "./authentication/auth0-provider";
 
 ReactDOM.render(
   <Router>
-    <CustomAuth0Provider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <App />
       </ThemeProvider>
-    </CustomAuth0Provider>
   </Router>,
   document.getElementById("root")
 );
