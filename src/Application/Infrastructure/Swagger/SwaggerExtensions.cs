@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.Swagger
+namespace Application.Infrastructure.Swagger
 {
     public static class SwaggerExtensions
     {

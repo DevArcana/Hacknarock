@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Persistance
+namespace Application.Infrastructure.Persistance
 {
     public class AppDbContext : DbContext
     {

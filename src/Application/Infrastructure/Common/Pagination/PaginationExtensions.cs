@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Application.Common.Pagination
+namespace Application.Infrastructure.Common.Pagination
 {
     public static class PaginationExtensions
     {

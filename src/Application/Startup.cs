@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using Application.Persistance;
-using Application.Swagger;
+using Application.Infrastructure;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -26,10 +26,12 @@ namespace Application
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddSpaStaticFiles(options => options.RootPath = "ClientApp/build");
-            services.AddSwagger(Configuration);
-            // services.AddPersistance(Configuration);
+            services.AddControllers().AddFluentValidation(fv =>
+            {
+                fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+            });
+            
+            services.AddInfrastructure(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,7 +42,7 @@ namespace Application
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSwagger(env);
+            app.UseInfrastructure(env);
 
             app.UseHttpsRedirection();
 

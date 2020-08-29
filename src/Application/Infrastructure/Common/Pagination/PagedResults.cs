@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Common.Pagination
+namespace Application.Infrastructure.Common.Pagination
 {
     public class PagedResults<T>
     {

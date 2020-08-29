@@ -1,4 +1,4 @@
-﻿namespace Application.Common.Pagination
+﻿namespace Application.Infrastructure.Common.Pagination
 {
     public class PaginationOptions
     {

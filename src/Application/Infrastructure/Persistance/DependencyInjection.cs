@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
 
-namespace Application.Persistance
+namespace Application.Infrastructure.Persistance
 {
     public static class DependencyInjection
     {
