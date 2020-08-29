@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import { Typography } from "@material-ui/core";
 import Post from "./Post";
 import styled from "styled-components";
 import BottomNav from "../../../components/BottomNav/BottomNav";
 import Box from "@material-ui/core/Box";
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const Home = (props) => {
   ///const [posts, setPosts] = useState([
@@ -23,19 +23,27 @@ export const Home = (props) => {
   //   },
   // ];
 
-  const [posts, setPosts] = useState([])
-
+  const [posts, setPosts] = useState([]);
+  const { getAccessTokenSilently, user } = useAuth0();
   useEffect(() => {
     const fetchData = async () => {
+      const token = await getAccessTokenSilently();
+      console.log(user);
       const result = await axios(
-        'https://devmountain-hacknarock.herokuapp.com/api/rest/requests',
+        "https://devmountain-hacknarock.herokuapp.com/api/rest/requests",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
-      console.log(result.data.results)
+      console.log(result.data.results);
       setPosts(result.data.results);
     };
- 
+
     fetchData();
   }, []);
+
   return (
     <>
       <StyledTypography align="center" color="textPrimary" variant="subtitle1">
@@ -53,4 +61,3 @@ export const Home = (props) => {
 const StyledTypography = styled(Typography)`
   margin-top: 1rem;
 `;
-
