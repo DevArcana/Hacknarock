@@ -9,24 +9,34 @@ import AnnouncementOutlinedIcon from "@material-ui/icons/AnnouncementOutlined";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { createBrowserHistory } from "history";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 export default function BottomNav(props) {
-  const [value, setValue] = React.useState("Help");
   const history = useHistory();
 
+  const location = useLocation();
+  const locpath = location.pathname;
   const handleChange = (event, newValue) => {
+    console.log(newValue)
     setValue(newValue);
   };
+  const getValues = () => {
+    if(locpath==="/")
+      return 0
+    if(locpath==="/help")
+      return 1
+  }
+  const [value, setValue] = React.useState(locpath);
+
   //TODO change to global routing paths
   return (
     <CustomAppBar>
       <BottomNavigationBox clone>
-        <BottomNavigation value={value} onChange={handleChange} showLabels>
+        <BottomNavigation value={getValues()} onChange={handleChange} showLabels>
           <IconBox clone>
             <BottomNavigationAction
               label="Help"
-              value="help"
+              value="0"
               icon={<AnnouncementOutlinedIcon />}
               onClick={() => history.push("/")}
             />
@@ -34,7 +44,7 @@ export default function BottomNav(props) {
           <IconBox clone>
             <BottomNavigationAction
               label="People I'm helping"
-              value="helping"
+              value="1"
               icon={<AccountCircleIcon />}
               onClick={() => history.push("/help")}
             />
