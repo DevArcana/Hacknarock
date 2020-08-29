@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - master
+
+env:
+  HEROKU_APP_NAME: devmountain-hacknarock
+  NETCORE_VERSION: '3.1.101'
+  NODE_VERSION: 12.x
+
+jobs:
+  build:
+    runs-on: ubuntu-16.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Node ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: npm ci and npm run build
+        run: |
+          cd src/Application/ClientApp
+          npm ci
+          npm run build:ci
+      
+      - name: Setup .NET Core SDK ${{ env.NETCORE_VERSION }}
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.NETCORE_VERSION }}
+
+      - name: Restore packages
+        run: dotnet restore
+
+      - name: Build app
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Publish app for deploy
+        run: dotnet publish --configuration Release --no-build --output publish
+      
+      - name: Dockerize and deploy
+        env: 
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: |
+          docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+          heroku container:push web -a ${{ env.HEROKU_APP_NAME }}
+          heroku container:release web -a ${{ env.HEROKU_APP_NAME }}
