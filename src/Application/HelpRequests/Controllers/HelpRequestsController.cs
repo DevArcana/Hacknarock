@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Controllers;
+using Application.HelpRequests.Commands;
 using Application.HelpRequests.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -25,6 +26,19 @@ namespace Application.HelpRequests.Controllers
             try
             {
                 return Ok(await _mediator.Send(query));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateHelpRequest([FromBody] CreateHelpRequestCommand command)
+        {
+            try
+            {
+                return Ok(await _mediator.Send(command));
             }
             catch
             {
