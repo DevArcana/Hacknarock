@@ -1,5 +1,6 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
+import HelpOffer from './HelpOffer';
 
 const MyHelpOffers = (props) => {
   const posts = [
@@ -32,6 +33,9 @@ const MyHelpOffers = (props) => {
   return (
     <>
       <Typography>These are my help offers.</Typography>
+      {posts?.map((post, i) => (
+        <HelpOffer post={post} key={i} />
+      ))}
     </>
   );
 }
