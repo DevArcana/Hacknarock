@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Application.Infrastructure.Persistance;
 using Application.Infrastructure.Swagger;
 using FluentValidation;
 using MediatR;
@@ -17,8 +18,8 @@ namespace Application.Infrastructure
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddSpaStaticFiles(options => options.RootPath = "ClientApp/build");
             services.AddSwagger(configuration);
+            services.AddPersistance(configuration);
             
-            // services.AddPersistance(Configuration);
             return services;
         }
 
