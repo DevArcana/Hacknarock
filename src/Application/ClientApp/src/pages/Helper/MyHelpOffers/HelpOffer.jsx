@@ -4,16 +4,24 @@ import Card from "@material-ui/core/Card";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
+import Moment from 'react-moment';
 
 const HelpOffer = (props) => {
     const { post } = props;
+
+    const datePipe = () => {
+      return <Moment format="MM/DD HH:mm">
+      {post.submittedAt}
+      </Moment>
+    }
+
     return (
         <>
             <PostCard>
                 <CardContent>
                     <SubtitlesBox>
                         <Typography variant="subtitle2">Looks for help</Typography>
-                        <Typography>{post.createdAt}</Typography>
+                        <Typography>{datePipe()}</Typography>
                     </SubtitlesBox>
                     <TitleTypography variant="h4">{post.title}</TitleTypography>
                     <Typography>{post.description}</Typography>
