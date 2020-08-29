@@ -6,8 +6,11 @@ import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Moment from 'react-moment';
 
+import { useHistory } from "react-router-dom";
+
 const Post = (props) => {
   const { post } = props;
+  let history = useHistory();
 
 
   const datePipe = () => {
@@ -16,6 +19,10 @@ const Post = (props) => {
     </Moment>
   }
 
+  const clickHelp = () => {
+    history.push("/help")
+    // POST HELP 
+  }
   return (
     <>
       <PostCard>
@@ -27,7 +34,8 @@ const Post = (props) => {
           <TitleTypography variant="h5">{post.title}</TitleTypography>
           <Typography color="textSecondary" noWrap>{post.description}</Typography>
           <ButtonBox>
-            <Button variant="contained" color="primary">
+
+            <Button variant="contained" color="primary" onClick={clickHelp}>
               HELP
             </Button>
           </ButtonBox>

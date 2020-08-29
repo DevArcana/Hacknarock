@@ -7,30 +7,23 @@ import styled from "styled-components";
 import BottomNav from "../../../components/BottomNav/BottomNav";
 import Box from "@material-ui/core/Box";
 
+
 export const Home = (props) => {
-  const posts = [
-    {
-      title: "Piotr",
-      createdAt: "05.11 12:35",
-      description: "Looking for some to do shopping for me!",
-    },
-    {
-      title: "Damian",
-      createdAt: "05.11 12:35",
-      description: "Need someone to take my pet for a walk.",
-    },
-    {
-      title: "Ania",
-      createdAt: "05.11 12:35",
-      description: "Need help with getting my medicine from the apothecary!",
-    },
-    {
-      title: "Bartek",
-      createdAt: "05.11 12:35",
-      description:
-        "I am looking for someone to deliver a package to my friend.",
-    },
-  ];
+  ///const [posts, setPosts] = useState([
+  //   {
+  //     title: "Piotr",
+  //     createdAt: "05.11 12:35",
+  //     description:
+  //       "Looking for some to do shopping for me!",
+  //   {
+  //     title: "Bartek",
+  //     createdAt: "05.11 12:35",
+  //     description:
+  //       "I am looking for someone to deliver a package to my friend.",
+  //   },
+  // ];
+
+  const [posts, setPosts] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,3 +53,4 @@ export const Home = (props) => {
 const StyledTypography = styled(Typography)`
   margin-top: 1rem;
 `;
+
