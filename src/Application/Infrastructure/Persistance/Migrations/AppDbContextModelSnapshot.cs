@@ -46,7 +46,7 @@ namespace Application.Infrastructure.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("HelpRequest");
+                    b.ToTable("HelpRequests");
                 });
 #pragma warning restore 612, 618
         }
