@@ -2,15 +2,13 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { Login } from "./pages/Login/Login";
 import { Loading } from "./pages/Loading/Loading";
 import Error from "./pages/Error/Error";
-import PrivateRoute from "./authentication/private-route";
 import Home from "./pages/Helper/Home/Home";
 import MyHelpOffers from "./pages/Helper/MyHelpOffers/MyHelpOffers";
 
 function App() {
-  const { isLoading, error, isAuthenticated } = useAuth0();
+  const { isLoading, error } = useAuth0();
 
   if (error) {
     return <Error error={error} />;
