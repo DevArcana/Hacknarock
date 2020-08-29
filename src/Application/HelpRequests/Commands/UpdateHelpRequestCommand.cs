@@ -47,8 +47,7 @@ namespace Application.HelpRequests.Commands
 
         public async Task<HelpRequestDto?> Handle(UpdateHelpRequestCommand request, CancellationToken cancellationToken)
         {
-            var helpRequest = await _context.HelpRequests.Where(x => x.Id == request.Id)
-                                            .FirstOrDefaultAsync(cancellationToken);
+            var helpRequest = await _context.HelpRequests.FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
             if (helpRequest == null)
             {
@@ -58,11 +57,7 @@ namespace Application.HelpRequests.Commands
             helpRequest.Title = request.Title;
             helpRequest.Description = request.Description;
             helpRequest.Urgency = request.Urgency;
-
-            if (request.Deadline != null)
-            {
-                helpRequest.Deadline = request.Deadline;
-            }
+            helpRequest.Deadline = request.Deadline;
 
             await _context.SaveChangesAsync(cancellationToken);
 

@@ -33,14 +33,12 @@ namespace Application.HelpRequests.Queries
             _mapper = mapper;
         }
 
-        public async Task<HelpRequestDto> Handle(GetHelpRequestQuery request, CancellationToken cancellationToken)
+        public Task<HelpRequestDto> Handle(GetHelpRequestQuery request, CancellationToken cancellationToken)
         {
-            var helpRequest = await _context.HelpRequests.AsNoTracking()
-                                            .Where(x => x.Id == request.Id)
-                                            .ProjectTo<HelpRequestDto>(_mapper.ConfigurationProvider)
-                                            .FirstOrDefaultAsync(cancellationToken);
-
-            return helpRequest;
+            return _context.HelpRequests.AsNoTracking()
+                .Where(x => x.Id == request.Id)
+                .ProjectTo<HelpRequestDto>(_mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync(cancellationToken);
         }
     }
 }

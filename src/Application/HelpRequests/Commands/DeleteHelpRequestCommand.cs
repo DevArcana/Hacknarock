@@ -34,8 +34,7 @@ namespace Application.HelpRequests.Commands
 
         public async Task<Unit> Handle(DeleteHelpRequestCommand request, CancellationToken cancellationToken)
         {
-            var helpRequest = await _context.HelpRequests.Where(x => x.Id == request.Id)
-                                            .FirstOrDefaultAsync(cancellationToken);
+            var helpRequest = await _context.HelpRequests.FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
             // TODO: What if helpRequest is null?
 
