@@ -23,14 +23,16 @@ namespace Application.HelpRequests.Controllers
         [HttpGet]
         public async Task<IActionResult> ListHelpRequests([FromQuery] ListHelpRequestsQuery query)
         {
-            try
-            {
-                return Ok(await _mediator.Send(query));
-            }
-            catch
-            {
-                return BadRequest();
-            }
+            return Ok(await _mediator.Send(query));
+
+            //try
+            //{
+            //    return Ok(await _mediator.Send(query));
+            //}
+            //catch
+            //{
+            //    return BadRequest();
+            //}
         }
 
         [HttpPost]
