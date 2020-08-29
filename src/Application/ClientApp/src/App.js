@@ -1,20 +1,31 @@
-import React from 'react';
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-
-import './App.css';
+import { Login } from "./pages/Login/Login";
+import { Loading } from "./pages/Loading/Loading";
+import Error from "./pages/Error/Error";
+import PrivateRoute from "./authentication/private-route";
+import Home from "./pages/Home/Home";
 
 function App() {
+  const { isLoading, error, isAuthenticated } = useAuth0();
+
+  if (error) {
+    return <Error error={error} />;
+  }
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
-    <Container maxWidth="sm">
-      <Box my={4}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          This is a Material UI application.
-        </Typography>
-      </Box>
-    </Container>
+    <Switch>
+      <Route path="/login" component={Login} />
+      <PrivateRoute
+        path="/"
+        component={Home}
+        isAuthenticated={isAuthenticated}
+      />
+    </Switch>
   );
 }
 
