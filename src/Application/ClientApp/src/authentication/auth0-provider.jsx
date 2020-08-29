@@ -4,7 +4,7 @@ import axios from "axios";
 
 const CustomAuth0Provider = ({ children }) => {
   const [state, setState] = useState({
-    audience: "http://devmountain-hacknarock.herokuapp.com/api/",
+    audience: "https://devmountain-hacknarock.herokuapp.com/api/",
     clientId: "q7wK2B3A8wieZ3PSP4Ok5P216PpehM85",
     domain: "young-firefly-0292.eu.auth0.com",
   });
