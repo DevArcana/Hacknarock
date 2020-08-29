@@ -12,14 +12,14 @@ const Post = (props) => {
       <PostCard>
         <CardContent>
           <SubtitlesBox>
-            <Typography variant="subtitle2">Looks for help</Typography>
+            <Typography color="textSecondary" variant="subtitle2">Looks for help</Typography>
             <Typography>{post.createdAt}</Typography>
           </SubtitlesBox>
-          <TitleTypography variant="h4">{post.title}</TitleTypography>
-          <Typography>{post.description}</Typography>
+          <TitleTypography variant="h5">{post.title}</TitleTypography>
+          <Typography color="textSecondary" noWrap>{post.description}</Typography>
           <ButtonBox>
             <Button variant="contained" color="primary">
-              Primary
+              Details
             </Button>
           </ButtonBox>
         </CardContent>
@@ -36,6 +36,7 @@ const ButtonBox = styled(Box)`
   display: flex;
   justify-content: flex-end;
   width: 100%;
+  margin-top: 1rem;
 `;
 
 const SubtitlesBox = styled(Box)`
@@ -46,4 +47,5 @@ const SubtitlesBox = styled(Box)`
 const TitleTypography = styled(Typography)`
   margin-bottom: 6px;
 `;
+
 export default Post;
