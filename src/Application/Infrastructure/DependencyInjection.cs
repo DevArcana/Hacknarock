@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Application.Infrastructure.Persistance;
 using Application.Infrastructure.Swagger;
+using AutoMapper;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -14,6 +15,7 @@ namespace Application.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddAutoMapper(typeof(Startup));
             services.AddMediatR(typeof(Startup));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddSpaStaticFiles(options => options.RootPath = "ClientApp/build");
