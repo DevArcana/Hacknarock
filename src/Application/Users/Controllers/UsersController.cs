@@ -34,7 +34,7 @@ namespace Application.Users.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> GetUserDetails([FromBody] UserDto userDto)
+        public async Task<IActionResult> CreateUser([FromBody] UserDto userDto)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.PhoneNumber == userDto.PhoneNumber);
 

@@ -11,9 +11,28 @@ import "fontsource-roboto";
 import { BrowserRouter as Router } from "react-router-dom";
 import CustomAuth0Provider from "./authentication/auth0-provider";
 
-import dummyAuth from './authentication/dummyAuth';
+// import { authenticate, getUser, createUser, isAuthenticated } from './authentication/StupidAuth';
 
-dummyAuth.setPhoneNumber('phone');
+// const auth = async () => {
+//   if (await authenticate('phone number goes here')) {
+//     console.log("Successfully logged in.")
+//     console.log(getUser());
+//   } else {
+//     console.log('No such user! Creating one.');
+
+//     await createUser('phone number goes here', 'name goes here', 'surname goes here');
+
+//     if (isAuthenticated()) {
+//       console.log("Created new user.")
+//       console.log(getUser());
+//     } else {
+//       console.log("Well, fuck you too.");
+//     }
+//   }
+// }
+
+// auth();
+
 
 ReactDOM.render(
   <Router>
