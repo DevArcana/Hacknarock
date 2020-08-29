@@ -9,18 +9,20 @@ import AnnouncementOutlinedIcon from "@material-ui/icons/AnnouncementOutlined";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { useHistory, useLocation } from "react-router-dom";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-
+import "./NavBar.css";
 export default function NavBar(props) {
   const history = useHistory();
 
   const location = useLocation();
   const locpath = location.pathname;
+
   const handleChange = (event, newValue) => {
     console.log(newValue);
   };
+
   const getValues = () => {
-    if (locpath === "/") return 0;
-    if (locpath === "/help") return 1;
+    if (locpath === "/helpee/helprequests") return 0;
+    if (locpath === "/helpee") return 1;
   };
 
   //TODO change to global routing paths
@@ -32,29 +34,23 @@ export default function NavBar(props) {
           onChange={handleChange}
           showLabels
         >
-          <IconBox clone>
-            <BottomNavigationAction
-              label="My help requests"
-              value="0"
-              icon={<AnnouncementOutlinedIcon />}
-              onClick={() => history.push("/helpee/helprequests")}
-            />
-          </IconBox>
-          <IconBox clone>
-            <BottomNavigationAction
-              label="Add request"
-              value="1"
-              icon={<AddCircleOutlineIcon />}
-              onClick={() => history.push("/helpee")}
-            />
-          </IconBox>
-          <IconBox clone>
-            <BottomNavigationAction
-              label="Log out"
-              value="logout"
-              icon={<ExitToAppIcon />}
-            />
-          </IconBox>
+          <BottomNavigationAction
+            label="My help requests"
+            value={0}
+            icon={<AnnouncementOutlinedIcon />}
+            onClick={() => history.push("/helpee/helprequests")}
+          />
+          <BottomNavigationAction
+            label="Add request"
+            value={1}
+            icon={<AddCircleOutlineIcon />}
+            onClick={() => history.push("/helpee")}
+          />
+          <BottomNavigationAction
+            label="Log out"
+            value="logout"
+            icon={<ExitToAppIcon />}
+          />
         </BottomNavigation>
       </BottomNavigationBox>
     </CustomAppBar>
@@ -68,14 +64,4 @@ const CustomAppBar = styled(AppBar)`
 
 const BottomNavigationBox = styled(Box)`
   background: ${theme.palette.primary.main};
-`;
-
-const IconBox = styled(Box)`
-  .Mui-selected {
-    color: ${theme.palette.background.default};
-  }
-
-  .MuiBottomNavigationAction-root .Mui-selected {
-    color: ${theme.palette.background.default};
-  }
 `;
