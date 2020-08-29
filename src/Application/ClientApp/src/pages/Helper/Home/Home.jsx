@@ -43,7 +43,7 @@ export const Home = (props) => {
       {posts?.map((post, i) => (
         <Post post={post} key={i} />
       ))}
-      <Box mb={10} />
+      <Box mb={9} />
       <BottomNav />
     </>
   );
@@ -52,3 +52,4 @@ export const Home = (props) => {
 const StyledTypography = styled(Typography)`
   margin-top: 1rem;
 `;
+
