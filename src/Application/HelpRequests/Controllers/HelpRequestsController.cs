@@ -45,5 +45,50 @@ namespace Application.HelpRequests.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetHelpRequest(int id)
+        {
+            var query = new GetHelpRequestQuery(id);
+
+            try
+            {
+                return Ok(await _mediator.Send(query));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateHelpRequest(int id, [FromBody] UpdateHelpRequestCommand command)
+        {
+            command.Id = id;
+
+            try
+            {
+                return Ok(await _mediator.Send(command));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteHelpRequest(int id)
+        {
+            var command = new DeleteHelpRequestCommand(id);
+
+            try
+            {
+                return Ok(await _mediator.Send(command));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
     }
 }
