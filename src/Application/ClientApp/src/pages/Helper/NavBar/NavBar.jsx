@@ -4,46 +4,48 @@ import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import styled from "styled-components";
 import Box from "@material-ui/core/Box";
-import theme from "../../theme";
+import theme from "../../../theme";
 import AnnouncementOutlinedIcon from "@material-ui/icons/AnnouncementOutlined";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { useHistory, useLocation } from "react-router-dom";
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
-export default function BottomNavHelpee(props) {
+export default function NavBar(props) {
   const history = useHistory();
 
   const location = useLocation();
   const locpath = location.pathname;
   const handleChange = (event, newValue) => {
-    console.log(newValue)
+    console.log(newValue);
   };
   const getValues = () => {
-    if(locpath==="/myhelprequests")
-      return 0
-    if(locpath==="/addrequest")
-      return 1
-  }
+    if (locpath === "/") return 0;
+    if (locpath === "/help") return 1;
+  };
 
   //TODO change to global routing paths
   return (
     <CustomAppBar>
       <BottomNavigationBox clone>
-        <BottomNavigation value={getValues()} onChange={handleChange} showLabels>
+        <BottomNavigation
+          value={getValues()}
+          onChange={handleChange}
+          showLabels
+        >
           <IconBox clone>
             <BottomNavigationAction
               label="Help"
               value="0"
               icon={<AnnouncementOutlinedIcon />}
-              onClick={() => history.push("/myhelprequests")}
+              onClick={() => history.push("/helper")}
             />
           </IconBox>
           <IconBox clone>
             <BottomNavigationAction
               label="People I'm helping"
               value="1"
-              icon={<AddCircleOutlineIcon />}
-              onClick={() => history.push("/addrequest")}
+              icon={<AccountCircleIcon />}
+              onClick={() => history.push("/helper/help")}
             />
           </IconBox>
           <IconBox clone>

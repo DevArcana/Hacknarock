@@ -26,6 +26,7 @@ const CustomAuth0Provider = ({ children }) => {
       domain={state.domain}
       clientId={state.clientId}
       redirectUri={window.location.origin}
+      audience="http://devmountain-hacknarock.herokuapp.com/api/"
     >
       {children}
     </Auth0Provider>
