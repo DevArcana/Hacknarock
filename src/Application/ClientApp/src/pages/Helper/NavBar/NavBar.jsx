@@ -37,7 +37,7 @@ export default function NavBar(props) {
               label="Help"
               value="0"
               icon={<AnnouncementOutlinedIcon />}
-              onClick={() => history.push("/")}
+              onClick={() => history.push("/helper")}
             />
           </IconBox>
           <IconBox clone>
@@ -45,7 +45,7 @@ export default function NavBar(props) {
               label="People I'm helping"
               value="1"
               icon={<AccountCircleIcon />}
-              onClick={() => history.push("/help")}
+              onClick={() => history.push("/helper/help")}
             />
           </IconBox>
           <IconBox clone>
