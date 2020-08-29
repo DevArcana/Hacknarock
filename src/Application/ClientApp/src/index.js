@@ -13,6 +13,8 @@ import CustomAuth0Provider from "./authentication/auth0-provider";
 
 import dummyAuth from './authentication/dummyAuth';
 
+dummyAuth.setPhoneNumber('phone');
+
 ReactDOM.render(
   <Router>
     <CustomAuth0Provider>
