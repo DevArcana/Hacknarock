@@ -27,7 +27,7 @@ function App() {
       {/*  component={Home}*/}
       {/*  isAuthenticated={isAuthenticated}*/}
       {/*/>*/}
-      <Route path="/myhelpoffers" component={MyHelpOffers} />
+      <Route path="/help" component={MyHelpOffers} />
       <Route path="/" component={Home} />
     </Switch>
   );

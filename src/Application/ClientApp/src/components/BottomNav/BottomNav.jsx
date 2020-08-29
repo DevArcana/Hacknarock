@@ -4,16 +4,14 @@ import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Slide from "@material-ui/core/Slide";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import FolderIcon from "@material-ui/icons/Folder";
-import RestoreIcon from "@material-ui/icons/Restore";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
 import styled from "styled-components";
 import Box from "@material-ui/core/Box";
 import theme from "../../theme";
 import AnnouncementOutlinedIcon from "@material-ui/icons/AnnouncementOutlined";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { createBrowserHistory } from "history";
+
 function HideOnScroll(props) {
   const { children } = props;
   const trigger = useScrollTrigger();
@@ -26,12 +24,13 @@ function HideOnScroll(props) {
 }
 
 export default function BottomNav(props) {
-  const [value, setValue] = React.useState("recents");
+  const [value, setValue] = React.useState("Help");
+  const history = createBrowserHistory();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  //TODO change to global routing paths
   return (
     <HideOnScroll {...props}>
       <CustomAppBar>
@@ -42,6 +41,7 @@ export default function BottomNav(props) {
                 label="Help"
                 value="help"
                 icon={<AnnouncementOutlinedIcon />}
+                onClick={() => history.push("/")}
               />
             </IconBox>
             <IconBox clone>
@@ -49,6 +49,7 @@ export default function BottomNav(props) {
                 label="People I'm helping"
                 value="helping"
                 icon={<AccountCircleIcon />}
+                onClick={() => history.push("/help")}
               />
             </IconBox>
             <IconBox clone>
