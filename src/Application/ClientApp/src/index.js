@@ -11,6 +11,8 @@ import "fontsource-roboto";
 import { BrowserRouter as Router } from "react-router-dom";
 import CustomAuth0Provider from "./authentication/auth0-provider";
 
+import dummyAuth from './authentication/dummyAuth';
+
 ReactDOM.render(
   <Router>
     <CustomAuth0Provider>

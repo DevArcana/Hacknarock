@@ -44,7 +44,7 @@ export const Home = (props) => {
     };
 
     fetchData();
-  }, []);
+  }, [getAccessTokenWithPopup]);
 
   return (
     <>

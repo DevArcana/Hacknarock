@@ -1,18 +1,13 @@
 using System;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Application.Infrastructure;
-using Application.Users.Interfaces;
-using Application.Users.Services;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Application
 {
@@ -37,25 +32,6 @@ namespace Application
             });
             
             services.AddInfrastructure(Configuration);
-            
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options =>
-            {
-                var domain = Environment.GetEnvironmentVariable("AUTH0_DOMAIN");
-                
-                options.Authority = !string.IsNullOrWhiteSpace(domain) ? $"https://{domain}/" : Configuration.GetSection("Auth0")["Authority"];
-                options.Audience = Configuration.GetSection("Auth0")["Audience"];
-
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    NameClaimType = ClaimTypes.NameIdentifier
-                };
-            });
-
-            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,9 +50,6 @@ namespace Application
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            
-            app.UseAuthentication();
-            app.UseAuthorization();
 
             // Sign each response with the fingerprint
             app.Use((context, next) =>

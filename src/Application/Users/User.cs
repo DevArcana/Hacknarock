@@ -3,19 +3,22 @@ namespace Application.Users
     public class User
     {
         public int Id { get; set; }
-        public string Guid { get; set; } = null!;
 
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
+        public string PhoneNumber { get; set; } = null!;
+
+        public string FirstName { get; set; } = null!;
+        public string LastName { get; set; } = null!;
 
         private User()
         {
-            
+            // Needed by EF Core
         }
         
-        public User(string guid)
+        public User(string phoneNumber, string firstName, string lastName)
         {
-            Guid = guid;
+            PhoneNumber = phoneNumber;
+            FirstName = firstName;
+            LastName = lastName;
         }
     }
 }
