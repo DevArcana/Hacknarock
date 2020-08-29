@@ -26,7 +26,7 @@ namespace Application.Controllers
                 {
                     Audience = "http://devmountain-hacknarock.herokuapp.com/api/",
                     ClientId = string.IsNullOrWhiteSpace(clientId) ? _configuration.GetSection("Auth0")["ClientId"] : clientId,
-                    Domain = string.IsNullOrWhiteSpace(clientId) ? _configuration.GetSection("Auth0")["Domain"] : domain
+                    Domain = string.IsNullOrWhiteSpace(domain) ? _configuration.GetSection("Auth0")["Domain"] : domain
                 }
             });
         }
