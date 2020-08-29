@@ -21,6 +21,9 @@ namespace Application.Infrastructure.Persistance.Configuration
 
             builder.Property(x => x.Urgency)
                 .HasDefaultValue(0);
+
+            builder.Property(x => x.SubmittedAt)
+                .IsRequired();
         }
     }
 }
