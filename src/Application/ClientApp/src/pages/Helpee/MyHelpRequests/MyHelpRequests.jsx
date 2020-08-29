@@ -3,12 +3,9 @@ import { Container, Typography } from "@material-ui/core";
 import NavBar from "../NavBar/NavBar";
 import Box from "@material-ui/core/Box";
 import styled from "styled-components";
-import Card from "@material-ui/core/Card";
-import { useHistory } from "react-router-dom";
 import HelpRequest from "./HelpRequest";
 
 const MyHelpRequests = () => {
-  let history = useHistory();
   const posts = [
     {
       title: "Piotr",

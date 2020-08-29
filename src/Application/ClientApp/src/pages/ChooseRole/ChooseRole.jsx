@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import styled from "styled-components";
 import Card from "@material-ui/core/Card";
+import routes from "../../routes";
 
 const helpSomeone = require("../../assets/undraw_gone_shopping_vwmc.svg");
 const getHelp = require("../../assets/undraw_to_do_list_a49b.svg");
@@ -34,7 +35,7 @@ const ChooseRole = () => {
                     width: `${imageSize - 2}rem`,
                   }}
                   src={String(helpSomeone)}
-                  onClick={() => history.push("/helper")}
+                  onClick={() => history.push(routes.pages.helper.home)}
                 />
               </CardContent>
             </CardActionArea>
@@ -49,7 +50,7 @@ const ChooseRole = () => {
                     height: `${imageSize - 2}rem`,
                     width: `${imageSize - 2}rem`,
                   }}
-                  onClick={() => history.push("/helpee")}
+                  onClick={() => history.push(routes.pages.helpee.home)}
                 />
               </CardContent>
             </CardActionArea>

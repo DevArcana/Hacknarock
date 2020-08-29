@@ -3,6 +3,7 @@ import HelpOffer from "./HelpOffer";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import NavBar from "../NavBar/NavBar";
+import routes from "../../../routes";
 
 const MyHelpOffers = (props) => {
   // const posts = [
@@ -37,7 +38,7 @@ const MyHelpOffers = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        "https://devmountain-hacknarock.herokuapp.com/api/rest/requests?accepted=true"
+        `https://devmountain-hacknarock.herokuapp.com/${routes.api.requests}?accepted=true`
       );
       console.log(result.data.results);
       setPosts(result.data.results);

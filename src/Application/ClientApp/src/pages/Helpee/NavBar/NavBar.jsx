@@ -10,6 +10,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { useHistory, useLocation } from "react-router-dom";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import "./NavBar.css";
+import routes from "../../../routes";
 export default function NavBar(props) {
   const history = useHistory();
 
@@ -21,8 +22,8 @@ export default function NavBar(props) {
   };
 
   const getValues = () => {
-    if (locpath === "/helpee/helprequests") return 0;
-    if (locpath === "/helpee") return 1;
+    if (locpath === routes.pages.helpee.requests) return 0;
+    if (locpath === routes.pages.helpee.home) return 1;
   };
 
   //TODO change to global routing paths
@@ -38,13 +39,13 @@ export default function NavBar(props) {
             label="My help requests"
             value={0}
             icon={<AnnouncementOutlinedIcon />}
-            onClick={() => history.push("/helpee/helprequests")}
+            onClick={() => history.push(routes.pages.helpee.requests)}
           />
           <BottomNavigationAction
             label="Add request"
             value={1}
             icon={<AddCircleOutlineIcon />}
-            onClick={() => history.push("/helpee")}
+            onClick={() => history.push(routes.pages.helpee.home)}
           />
           <BottomNavigationAction
             label="Log out"
