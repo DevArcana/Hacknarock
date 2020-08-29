@@ -1,8 +1,7 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
-import Post from "./Post";
 
-const Home = (props) => {
+const MyHelpOffers = (props) => {
   const posts = [
     {
       title: "request1",
@@ -32,12 +31,9 @@ const Home = (props) => {
 
   return (
     <>
-      <Typography>Help you can give in your neighbourhood!</Typography>
-      {posts?.map((post, i) => (
-        <Post post={post} key={i} />
-      ))}
+      <Typography>These are my help offers.</Typography>
     </>
   );
-};
+}
 
-export default Home;
+export default MyHelpOffers;

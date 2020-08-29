@@ -2,7 +2,9 @@ import React from "react";
 import { Typography } from "@material-ui/core";
 
 const GiveHelp = (props) => (
-  <Typography>Help you can give in your neighbourhood!</Typography>
+    <>
+        <Typography>These are my help offers.</Typography>
+    </>
 );
 
 export default GiveHelp;
