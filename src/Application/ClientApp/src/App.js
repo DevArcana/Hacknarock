@@ -6,7 +6,8 @@ import { Login } from "./pages/Login/Login";
 import { Loading } from "./pages/Loading/Loading";
 import Error from "./pages/Error/Error";
 import PrivateRoute from "./authentication/private-route";
-import Home from "./pages/Home/Home";
+import Home from "./pages/Helper/Home/Home";
+import MyHelpOffers from "./pages/Helper/MyHelpOffers/MyHelpOffers";
 
 function App() {
   const { isLoading, error, isAuthenticated } = useAuth0();
@@ -17,14 +18,17 @@ function App() {
   if (isLoading) {
     return <Loading />;
   }
+
   return (
     <Switch>
-      <Route path="/login" component={Login} />
-      <PrivateRoute
-        path="/"
-        component={Home}
-        isAuthenticated={isAuthenticated}
-      />
+      {/*<Route path="/login" component={Login} />*/}
+      {/*<PrivateRoute*/}
+      {/*  path="/"*/}
+      {/*  component={Home}*/}
+      {/*  isAuthenticated={isAuthenticated}*/}
+      {/*/>*/}
+      <Route path="/myhelpoffers" component={MyHelpOffers} />
+      <Route path="/" component={Home} />
     </Switch>
   );
 }
