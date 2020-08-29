@@ -11,6 +11,7 @@ import AnnouncementOutlinedIcon from "@material-ui/icons/AnnouncementOutlined";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { createBrowserHistory } from "history";
+import { useHistory } from "react-router-dom";
 
 function HideOnScroll(props) {
   const { children } = props;
@@ -25,7 +26,7 @@ function HideOnScroll(props) {
 
 export default function BottomNav(props) {
   const [value, setValue] = React.useState("Help");
-  const history = createBrowserHistory();
+  const history = useHistory();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

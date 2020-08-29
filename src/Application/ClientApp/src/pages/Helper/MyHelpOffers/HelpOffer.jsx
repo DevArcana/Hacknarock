@@ -14,6 +14,10 @@ const HelpOffer = (props) => {
       {post.submittedAt}
       </Moment>
     }
+    const clickCancel = () => {
+      // POST REMOVE AND REMOVE  
+      let a;
+    }
 
     return (
         <>
@@ -27,7 +31,7 @@ const HelpOffer = (props) => {
                     <Typography>{post.description}</Typography>
                     <ButtonBox>
                         <Button variant="contained" color="primary">
-                            Primary
+                            CANCEL
             </Button>
                     </ButtonBox>
                 </CardContent>

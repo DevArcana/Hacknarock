@@ -2,6 +2,7 @@ import { Typography } from "@material-ui/core";
 import HelpOffer from './HelpOffer';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import BottomNav from "../../../components/BottomNav/BottomNav";
 
 
 
@@ -53,6 +54,8 @@ const MyHelpOffers = (props) => {
       {posts?.map((post, i) => (
         <HelpOffer post={post} key={i} />
       ))}
+      <BottomNav />
+
     </>
   );
 }
