@@ -5,9 +5,8 @@ import styled from "styled-components";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import Box from "@material-ui/core/Box";
-import "date-fns";
 import Button from "@material-ui/core/Button";
-
+import BottomNavHelpee from '../../../components/BottomNav/BottomNavHelpee'
 export const Home = (props) => {
   const [value, setValue] = React.useState("");
   const [selectedCategory, setSelectedCategory] = React.useState("");
@@ -76,6 +75,7 @@ export const Home = (props) => {
           </Button>
         </ButtonBox>
       </Container>
+      <BottomNavHelpee></BottomNavHelpee>
     </>
   );
 };
