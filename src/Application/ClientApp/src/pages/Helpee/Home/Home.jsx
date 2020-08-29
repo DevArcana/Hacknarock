@@ -11,13 +11,9 @@ export const Home = (props) => {
   const [value, setValue] = React.useState("");
   const [selectedCategory, setSelectedCategory] = React.useState("");
   const categories = ["Do shopping", "Get medicine", "Take a pet for a walk"];
-  const [selectedDate, setSelectedDate] = React.useState(
-    new Date("2014-08-18T21:11:54")
-  );
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
+
+  
 
   const handleChange = (event) => {
     setValue(event.target.value);

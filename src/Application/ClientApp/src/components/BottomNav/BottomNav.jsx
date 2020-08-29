@@ -8,7 +8,6 @@ import theme from "../../theme";
 import AnnouncementOutlinedIcon from "@material-ui/icons/AnnouncementOutlined";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import { createBrowserHistory } from "history";
 import { useHistory, useLocation } from "react-router-dom";
 
 export default function BottomNav(props) {
@@ -18,7 +17,6 @@ export default function BottomNav(props) {
   const locpath = location.pathname;
   const handleChange = (event, newValue) => {
     console.log(newValue)
-    setValue(newValue);
   };
   const getValues = () => {
     if(locpath==="/")
@@ -26,7 +24,6 @@ export default function BottomNav(props) {
     if(locpath==="/help")
       return 1
   }
-  const [value, setValue] = React.useState(locpath);
 
   //TODO change to global routing paths
   return (

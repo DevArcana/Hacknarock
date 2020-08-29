@@ -6,9 +6,7 @@ import styled from "styled-components";
 import Box from "@material-ui/core/Box";
 import theme from "../../theme";
 import AnnouncementOutlinedIcon from "@material-ui/icons/AnnouncementOutlined";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import { createBrowserHistory } from "history";
 import { useHistory, useLocation } from "react-router-dom";
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
@@ -19,7 +17,6 @@ export default function BottomNavHelpee(props) {
   const locpath = location.pathname;
   const handleChange = (event, newValue) => {
     console.log(newValue)
-    setValue(newValue);
   };
   const getValues = () => {
     if(locpath==="/myhelprequests")
@@ -27,7 +24,6 @@ export default function BottomNavHelpee(props) {
     if(locpath==="/addrequest")
       return 1
   }
-  const [value, setValue] = React.useState(locpath);
 
   //TODO change to global routing paths
   return (

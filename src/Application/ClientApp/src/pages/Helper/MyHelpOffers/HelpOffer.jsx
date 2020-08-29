@@ -14,11 +14,7 @@ const HelpOffer = (props) => {
       {post.submittedAt}
       </Moment>
     }
-    
-    const clickCancel = () => {
-      // POST REMOVE AND REMOVE  
-      let a;
-    }
+ 
 
     return (
         <>
