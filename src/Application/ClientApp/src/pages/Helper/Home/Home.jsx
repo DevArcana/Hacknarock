@@ -24,21 +24,18 @@ export const Home = (props) => {
   // ];
 
   const [posts, setPosts] = useState([]);
-  const { getAccessTokenWithPopup, user } = useAuth0();
+  const { getAccessTokenWithPopup } = useAuth0();
 
   useEffect(() => {
     const fetchData = async () => {
       const token = await getAccessTokenWithPopup({
         audience: "http://devmountain-hacknarock.herokuapp.com/api/",
       });
-      const result = await axios(
-        "/api/rest/requests",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const result = await axios("/api/rest/requests", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(result.data.results);
       setPosts(result.data.results);
     };
