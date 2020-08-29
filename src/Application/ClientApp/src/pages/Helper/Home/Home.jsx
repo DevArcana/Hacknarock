@@ -5,6 +5,7 @@ import { Typography } from "@material-ui/core";
 import Post from "./Post";
 import styled from "styled-components";
 import Box from "@material-ui/core/Box";
+import { useAuth0 } from "@auth0/auth0-react";
 import NavBar from "../NavBar/NavBar";
 
 export const Home = (props) => {
@@ -23,11 +24,20 @@ export const Home = (props) => {
   // ];
 
   const [posts, setPosts] = useState([]);
+  const { getAccessTokenWithPopup, user } = useAuth0();
 
   useEffect(() => {
     const fetchData = async () => {
+      const token = await getAccessTokenWithPopup({
+        audience: "http://devmountain-hacknarock.herokuapp.com/api/",
+      });
       const result = await axios(
-        "https://devmountain-hacknarock.herokuapp.com/api/rest/requests"
+        "/api/rest/requests",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log(result.data.results);
       setPosts(result.data.results);
@@ -35,6 +45,7 @@ export const Home = (props) => {
 
     fetchData();
   }, []);
+
   return (
     <>
       <StyledTypography align="center" color="textPrimary" variant="subtitle1">
