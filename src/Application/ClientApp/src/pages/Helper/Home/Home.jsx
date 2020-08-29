@@ -24,13 +24,14 @@ export const Home = (props) => {
   // ];
 
   const [posts, setPosts] = useState([]);
-  const { getAccessTokenSilently, user } = useAuth0();
+  const { getAccessTokenWithPopup, user } = useAuth0();
   useEffect(() => {
     const fetchData = async () => {
-      const token = await getAccessTokenSilently();
-      console.log(user);
+      const token = await getAccessTokenWithPopup({
+        audience: "http://devmountain-hacknarock.herokuapp.com/api/",
+      });
       const result = await axios(
-        "https://devmountain-hacknarock.herokuapp.com/api/rest/requests",
+        "/api/rest/requests",
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -21,7 +21,7 @@ namespace Application.HelpRequests.Controllers
         {
             _mediator = mediator;
         }
-
+        
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> ListHelpRequests([FromQuery] ListHelpRequestsQuery query)

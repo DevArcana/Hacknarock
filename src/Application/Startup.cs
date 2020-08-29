@@ -1,4 +1,5 @@
 using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Application.Infrastructure;
 using Application.Users.Interfaces;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Application
 {
@@ -46,6 +48,11 @@ namespace Application
                 
                 options.Authority = !string.IsNullOrWhiteSpace(domain) ? $"https://{domain}/" : Configuration.GetSection("Auth0")["Authority"];
                 options.Audience = Configuration.GetSection("Auth0")["Audience"];
+
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    NameClaimType = ClaimTypes.NameIdentifier
+                };
             });
 
             services.AddScoped<IUserService, UserService>();
@@ -58,7 +65,7 @@ namespace Application
             {
                 app.UseDeveloperExceptionPage();
             }
-            
+
             // Shame on you, Bartek, shame on you for uninstalling docker
             app.UseCors(x => x.SetIsOriginAllowed(x => true).AllowAnyHeader().AllowAnyMethod().AllowAnyHeader());
 
@@ -67,9 +74,9 @@ namespace Application
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseAuthorization();
+            
             app.UseAuthentication();
+            app.UseAuthorization();
 
             // Sign each response with the fingerprint
             app.Use((context, next) =>
