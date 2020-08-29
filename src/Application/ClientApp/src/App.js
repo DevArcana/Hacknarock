@@ -8,7 +8,7 @@ import { Loading } from "./pages/Loading/Loading";
 import Error from "./pages/Error/Error";
 import { Home as HelperHome } from "./pages/Helper/Home/Home";
 import MyHelpOffers from "./pages/Helper/MyHelpOffers/MyHelpOffers";
-//import { Home as HelpeeHome } from "./pages/Helpee/Home/Home";
+import { Home as HelpeeHome } from "./pages/Helpee/Home/Home";
 
 function App() {
   const { isLoading, error, isAuthenticated } = useAuth0();
@@ -44,7 +44,7 @@ function App() {
       {/*  isAuthenticated={isAuthenticated}*/}
       {/*/>*/}
       <Route path="/help" component={MyHelpOffers} />
-      {/* <Route path="/addrequest" component={HelpeeHome} /> */}
+      <Route path="/addrequest" component={HelpeeHome} />
       <Route path="/" component={HelperHome} />
     </Switch>
   );
