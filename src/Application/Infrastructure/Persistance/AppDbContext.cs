@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Application.HelpRequests;
+using Application.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Infrastructure.Persistance
@@ -12,6 +13,7 @@ namespace Application.Infrastructure.Persistance
         }
 
         public DbSet<HelpRequest> HelpRequests => Set<HelpRequest>();
+        public DbSet<User> Users => Set<User>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
