@@ -6,7 +6,9 @@ import Post from "./Post";
 import styled from "styled-components";
 import BottomNav from "../../../components/BottomNav/BottomNav";
 import Box from "@material-ui/core/Box";
-const Home = (props) => {
+
+
+export const Home = (props) => {
   ///const [posts, setPosts] = useState([
   //   {
   //     title: "Piotr",
@@ -42,7 +44,7 @@ const Home = (props) => {
       {posts?.map((post, i) => (
         <Post post={post} key={i} />
       ))}
-      <Box mb={10} />
+      <Box mb={9} />
       <BottomNav />
     </>
   );
@@ -52,4 +54,3 @@ const StyledTypography = styled(Typography)`
   margin-top: 1rem;
 `;
 
-export default Home;
