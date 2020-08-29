@@ -6,11 +6,11 @@ import styled from "styled-components";
 import Box from "@material-ui/core/Box";
 import theme from "../../theme";
 import AnnouncementOutlinedIcon from "@material-ui/icons/AnnouncementOutlined";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { useHistory, useLocation } from "react-router-dom";
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
-export default function BottomNav(props) {
+export default function BottomNavHelpee(props) {
   const history = useHistory();
 
   const location = useLocation();
@@ -19,9 +19,9 @@ export default function BottomNav(props) {
     console.log(newValue)
   };
   const getValues = () => {
-    if(locpath==="/")
+    if(locpath==="/myhelprequests")
       return 0
-    if(locpath==="/help")
+    if(locpath==="/addrequest")
       return 1
   }
 
@@ -35,15 +35,15 @@ export default function BottomNav(props) {
               label="Help"
               value="0"
               icon={<AnnouncementOutlinedIcon />}
-              onClick={() => history.push("/")}
+              onClick={() => history.push("/myhelprequests")}
             />
           </IconBox>
           <IconBox clone>
             <BottomNavigationAction
               label="People I'm helping"
               value="1"
-              icon={<AccountCircleIcon />}
-              onClick={() => history.push("/help")}
+              icon={<AddCircleOutlineIcon />}
+              onClick={() => history.push("/addrequest")}
             />
           </IconBox>
           <IconBox clone>
