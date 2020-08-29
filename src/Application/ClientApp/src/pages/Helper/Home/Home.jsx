@@ -6,26 +6,14 @@ import Post from "./Post";
 import styled from "styled-components";
 import Box from "@material-ui/core/Box";
 import NavBar from "../NavBar/NavBar";
-import routes from "../../../routes";
 
 export const Home = (props) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-<<<<<<< HEAD
-
       const result = await axios("/api/rest/requests");
-=======
-      const token = await getAccessTokenWithPopup({
-        audience: "http://devmountain-hacknarock.herokuapp.com/api/",
-      });
-      const result = await axios(routes.api.requests, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
->>>>>>> 4be1020... Add global routes
+
       console.log(result.data.results);
       setPosts(result.data.results);
     };
