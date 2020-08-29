@@ -1,11 +1,8 @@
 import { Typography } from "@material-ui/core";
-import HelpOffer from './HelpOffer';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
-import BottomNav from "../../../components/BottomNav/BottomNav";
-
-
+import HelpOffer from "./HelpOffer";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import NavBar from "../NavBar/NavBar";
 
 const MyHelpOffers = (props) => {
   // const posts = [
@@ -35,17 +32,17 @@ const MyHelpOffers = (props) => {
   //   },
   // ];
 
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        'https://devmountain-hacknarock.herokuapp.com/api/rest/requests?accepted=true',
+        "https://devmountain-hacknarock.herokuapp.com/api/rest/requests?accepted=true"
       );
-      console.log(result.data.results)
+      console.log(result.data.results);
       setPosts(result.data.results);
     };
- 
+
     fetchData();
   }, []);
 
@@ -55,10 +52,9 @@ const MyHelpOffers = (props) => {
       {posts?.map((post, i) => (
         <HelpOffer post={post} key={i} />
       ))}
-      <BottomNav />
-
+      <NavBar />
     </>
   );
-}
+};
 
 export default MyHelpOffers;

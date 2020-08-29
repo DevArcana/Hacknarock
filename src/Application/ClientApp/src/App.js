@@ -1,14 +1,15 @@
 import React from "react";
-import { Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import PrivateRoute from "./authentication/private-route";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Route } from "react-router-dom";
 import { Login } from "./pages/Login/Login";
 import { Loading } from "./pages/Loading/Loading";
 import Error from "./pages/Error/Error";
 import { Home as HelperHome } from "./pages/Helper/Home/Home";
 import MyHelpOffers from "./pages/Helper/MyHelpOffers/MyHelpOffers";
-//import { Home as HelpeeHome } from "./pages/Helpee/Home/Home";
+import MyHelpRequests from "./pages/Helpee/MyHelpRequests/MyHelpRequests";
+import { AddNewRequest } from "./pages/Helpee/AddNewRequest/AddNewRequest";
+import ChooseRole from "./pages/ChooseRole/ChooseRole";
 
 function App() {
   const { isLoading, error, isAuthenticated } = useAuth0();
@@ -43,9 +44,11 @@ function App() {
       {/*  component={HelperHome}*/}
       {/*  isAuthenticated={isAuthenticated}*/}
       {/*/>*/}
-      <Route path="/help" component={MyHelpOffers} />
-      {/* <Route path="/addrequest" component={HelpeeHome} /> */}
-      <Route path="/" component={HelperHome} />
+      <Route path="/helpee/helprequests" component={MyHelpRequests} />
+      <Route path="/helpee" component={AddNewRequest} />
+      <Route path="/helper/help" component={MyHelpOffers} />
+      <Route path="/helper" component={HelperHome} />
+      <Route path="/" component={ChooseRole} />
     </Switch>
   );
 }
