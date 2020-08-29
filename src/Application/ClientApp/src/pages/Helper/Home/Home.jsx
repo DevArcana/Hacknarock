@@ -1,43 +1,48 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
 import Post from "./Post";
+import styled from "styled-components";
 
 const Home = (props) => {
   const posts = [
     {
-      title: "request1",
+      title: "Piotr",
       createdAt: "05.11 12:35",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+        "Looking for some to do shopping for me!",
     },
     {
-      title: "request2",
+      title: "Damian",
       createdAt: "05.11 12:35",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+        "Need someone to take my pet for a walk.",
     },
     {
-      title: "request3",
+      title: "Ania",
       createdAt: "05.11 12:35",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+        "Need help with getting my medicine from the apothecary!",
     },
     {
-      title: "request4",
+      title: "Bartek",
       createdAt: "05.11 12:35",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+        "I am looking for someone to deliver a package to my friend.",
     },
   ];
 
   return (
     <>
-      <Typography>Help you can give in your neighbourhood!</Typography>
+      <StyledTypography align="center" color="textPrimary" variant="subtitle1">Help you can give in your neighbourhood!</StyledTypography>
       {posts?.map((post, i) => (
         <Post post={post} key={i} />
       ))}
     </>
   );
 };
+
+const StyledTypography = styled(Typography)`
+  margin-top: 1rem;
+`;
 
 export default Home;
