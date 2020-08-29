@@ -10,8 +10,6 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { useHistory, useLocation } from "react-router-dom";
 import "./NavBar.css";
-import routes from "../../../routes";
-
 export default function NavBar(props) {
   const history = useHistory();
 
@@ -21,8 +19,8 @@ export default function NavBar(props) {
     console.log(newValue);
   };
   const getValues = () => {
-    if (locpath === routes.pages.helper.home) return 0;
-    if (locpath === routes.pages.helper.help) return 1;
+    if (locpath === "/helper") return 0;
+    if (locpath === "/helper/help") return 1;
   };
 
   //TODO change to global routing paths
@@ -38,13 +36,13 @@ export default function NavBar(props) {
             label="Help"
             value={0}
             icon={<AnnouncementOutlinedIcon />}
-            onClick={() => history.push(routes.pages.helper.home)}
+            onClick={() => history.push("/helper")}
           />
           <BottomNavigationAction
             label="People I'm helping"
             value={1}
             icon={<AccountCircleIcon />}
-            onClick={() => history.push(routes.pages.helper.help)}
+            onClick={() => history.push("/helper/help")}
           />
           <BottomNavigationAction
             label="Log out"

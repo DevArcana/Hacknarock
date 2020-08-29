@@ -1,8 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import PrivateRoute from "./authentication/private-route";
 import { Login } from "./pages/Login/Login";
-import Error from "./pages/Error/Error";
 import { Home as HelperHome } from "./pages/Helper/Home/Home";
 import MyHelpOffers from "./pages/Helper/MyHelpOffers/MyHelpOffers";
 import MyHelpRequests from "./pages/Helpee/MyHelpRequests/MyHelpRequests";
@@ -14,11 +12,7 @@ function App() {
   return (
     <Switch>
       <Route path={routes.pages.login} component={Login} />
-      <PrivateRoute
-        path="/testAuth"
-        component={Error}
-        isAuthenticated={isAuthenticated}
-      />
+  
 
       {/*<PrivateRoute*/}
       {/*  path="/help"*/}

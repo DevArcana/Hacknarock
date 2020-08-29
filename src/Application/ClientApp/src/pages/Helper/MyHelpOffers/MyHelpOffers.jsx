@@ -38,7 +38,7 @@ const MyHelpOffers = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://devmountain-hacknarock.herokuapp.com/${routes.api.requests}?accepted=true`
+        `${routes.api.requests}?accepted=true`
       );
       console.log(result.data.results);
       setPosts(result.data.results);
