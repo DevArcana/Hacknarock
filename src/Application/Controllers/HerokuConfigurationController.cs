@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Application.Controllers
 {
+    [Route("api/rest/configuration")]
     public class HerokuConfigurationController : BaseController
     {
         [HttpGet]
@@ -12,9 +13,8 @@ namespace Application.Controllers
             {
                 Auth0 = new
                 {
-                    Audience = Environment.GetEnvironmentVariable("AUTH0_AUDIENCE"),
+                    Audience = "http://devmountain-hacknarock.herokuapp.com/api/",
                     ClientId = Environment.GetEnvironmentVariable("AUTH0_CLIENT_ID"),
-                    ClientSecret = Environment.GetEnvironmentVariable("AUTH0_CLIENT_SECRET"),
                     Domain = Environment.GetEnvironmentVariable("AUTH0_DOMAIN")
                 }
             });
