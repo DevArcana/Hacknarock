@@ -1,5 +1,6 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
+import PrivateRoute from "./authentication/private-route";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { Loading } from "./pages/Loading/Loading";
@@ -8,7 +9,7 @@ import Home from "./pages/Helper/Home/Home";
 import MyHelpOffers from "./pages/Helper/MyHelpOffers/MyHelpOffers";
 
 function App() {
-  const { isLoading, error } = useAuth0();
+  const { isLoading, error, isAuthenticated } = useAuth0();
 
   if (error) {
     return <Error error={error} />;
@@ -19,14 +20,14 @@ function App() {
 
   return (
     <Switch>
-      {/*<Route path="/login" component={Login} />*/}
+      {/* <Route path="/login" component={Login} />*/}
       {/*<PrivateRoute*/}
       {/*  path="/"*/}
       {/*  component={Home}*/}
-      {/*  isAuthenticated={isAuthenticated}*/}
-      {/*/>*/}
-      <Route path="/myhelpoffers" component={MyHelpOffers} />
-      <Route path="/" component={Home} />
+      {/*  isAuthenticated={isAuthenticated} */}
+      {/*/> */}
+      <PrivateRoute path="/myhelpoffers" component={MyHelpOffers} isAuthenticated={isAuthenticated} />
+      <PrivateRoute path="/" component={Home} isAuthenticated={isAuthenticated} />
     </Switch>
   );
 }
