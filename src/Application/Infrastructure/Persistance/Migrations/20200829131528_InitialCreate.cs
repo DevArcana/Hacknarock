@@ -9,7 +9,7 @@ namespace Application.Infrastructure.Persistance.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "HelpRequest",
+                name: "HelpRequests",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -21,14 +21,14 @@ namespace Application.Infrastructure.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HelpRequest", x => x.Id);
+                    table.PrimaryKey("PK_HelpRequests", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "HelpRequest");
+                name: "HelpRequests");
         }
     }
 }
