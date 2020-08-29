@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,16 +10,21 @@ using Microsoft.Extensions.Primitives;
 
 namespace Application.Users
 {
-    [AttributeUsage(AttributeTargets.Method)]
-    public class AuthorizeAttribute : Attribute, IAuthorizationFilter
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
+    public class StupidAuth : Attribute, IAuthorizationFilter
     {
         public void OnAuthorization(AuthorizationFilterContext context)
         {
             context.HttpContext.Request.Headers.TryGetValue("Phone-Number", out StringValues phoneNumbers);
-
-            if (phoneNumbers.Count == 0)
+            var phoneNumber = phoneNumbers.FirstOrDefault();
+            
+            if (phoneNumber == null)
             {
                 context.Result = new UnauthorizedResult();
+            }
+            else
+            {
+                context.HttpContext.User.AddIdentity(new GenericIdentity(phoneNumber, "StupidAuth"));
             }
         }
     }
