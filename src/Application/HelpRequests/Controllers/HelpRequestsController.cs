@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Application.Controllers;
 using Application.HelpRequests.Commands;
 using Application.HelpRequests.Queries;
+using Application.Users;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +22,7 @@ namespace Application.HelpRequests.Controllers
             _mediator = mediator;
         }
         
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> ListHelpRequests([FromQuery] ListHelpRequestsQuery query)
         {
