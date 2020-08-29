@@ -18,7 +18,7 @@ namespace Application.Users
 
             if (phoneNumbers.Count == 0)
             {
-                context.Result = new JsonResult(new { message = "Unauthorized"}) {StatusCode = StatusCodes.Status401Unauthorized};
+                context.Result = new UnauthorizedResult();
             }
         }
     }
