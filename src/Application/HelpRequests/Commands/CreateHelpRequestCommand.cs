@@ -50,7 +50,7 @@ namespace Application.HelpRequests.Commands
         
         public async Task<HelpRequestDto> Handle(CreateHelpRequestCommand request, CancellationToken cancellationToken)
         {
-            var helpRequest = new HelpRequest(request.Title, request.Description, request.Deadline, request.Urgency);
+            var helpRequest = new HelpRequest(request.Title, request.Description, DateTime.UtcNow, request.Deadline, request.Urgency);
 
             _context.Add(helpRequest);
             await _context.SaveChangesAsync(cancellationToken);
