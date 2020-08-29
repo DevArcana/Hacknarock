@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Application.HelpRequests.Controllers
 {
+    [Route("api/rest/requests")]
     public class HelpRequestsController : BaseController
     {
         private readonly IMediator _mediator;
@@ -23,16 +24,14 @@ namespace Application.HelpRequests.Controllers
         [HttpGet]
         public async Task<IActionResult> ListHelpRequests([FromQuery] ListHelpRequestsQuery query)
         {
-            return Ok(await _mediator.Send(query));
-
-            //try
-            //{
-            //    return Ok(await _mediator.Send(query));
-            //}
-            //catch
-            //{
-            //    return BadRequest();
-            //}
+            try
+            {
+                return Ok(await _mediator.Send(query));
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost]
