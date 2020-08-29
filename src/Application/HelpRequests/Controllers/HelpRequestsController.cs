@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Application.Controllers;
 using Application.HelpRequests.Commands;
 using Application.HelpRequests.Queries;
@@ -18,12 +19,15 @@ namespace Application.HelpRequests.Controllers
         {
             _mediator = mediator;
         }
-        
+
+        private string PhoneNumber => User.Identities.First(x => x.AuthenticationType == "StupidAuth").Name;
+
         [HttpGet]
         public async Task<IActionResult> ListHelpRequests([FromQuery] ListHelpRequestsQuery query)
         {
             try
             {
+                query.PhoneNumber = PhoneNumber;
                 return Ok(await _mediator.Send(query));
             }
             catch
@@ -37,6 +41,7 @@ namespace Application.HelpRequests.Controllers
         {
             try
             {
+                command.PhoneNumber = PhoneNumber;
                 return Ok(await _mediator.Send(command));
             }
             catch

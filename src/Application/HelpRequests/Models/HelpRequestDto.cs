@@ -1,5 +1,6 @@
 ﻿using System;
 using Application.Infrastructure.AutoMapper;
+using AutoMapper;
 
 namespace Application.HelpRequests.Models
 {
@@ -12,5 +13,11 @@ namespace Application.HelpRequests.Models
         public int Urgency { get; set; }
         public string Submitter { get; set; } = null!;
         public DateTime SubmittedAt { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<HelpRequest, HelpRequestDto>()
+                .ForMember(x => x.Submitter, dest => dest.MapFrom(src => src.Submitter.FirstName));
+        }
     }
 }

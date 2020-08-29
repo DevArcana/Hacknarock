@@ -13,27 +13,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.HelpRequests.Queries
 {
-    public class ListHelpRequestsQuery : PaginationOptions, IRequest<PagedResults<HelpRequestListDto>>
+    public class ListOwnHelpRequestsQuery : PaginationOptions, IRequest<PagedResults<HelpRequestListDto>>
     {
         public string? PhoneNumber { get; set; }
     }
 
-    public class ListHelpRequestsQueryHandler : IRequestHandler<ListHelpRequestsQuery, PagedResults<HelpRequestListDto>>
+    public class ListOwnHelpRequestsQueryHandler : IRequestHandler<ListOwnHelpRequestsQuery, PagedResults<HelpRequestListDto>>
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
 
-        public ListHelpRequestsQueryHandler(AppDbContext context, IMapper mapper)
+        public ListOwnHelpRequestsQueryHandler(AppDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public Task<PagedResults<HelpRequestListDto>> Handle(ListHelpRequestsQuery request, CancellationToken cancellationToken)
+        public Task<PagedResults<HelpRequestListDto>> Handle(ListOwnHelpRequestsQuery request, CancellationToken cancellationToken)
         {
             return _context.HelpRequests.AsNoTracking()
                 .Include(x => x.Submitter)
-                .Where(x => x.Submitter.PhoneNumber != request.PhoneNumber)
+                .Where(x => x.Submitter.PhoneNumber == request.PhoneNumber)
                 .OrderByDescending(x => x.SubmittedAt)
                 .ProjectTo<HelpRequestListDto>(_mapper.ConfigurationProvider)
                 .PaginateAsync(request, cancellationToken);

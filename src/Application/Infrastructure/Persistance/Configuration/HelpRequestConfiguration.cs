@@ -24,6 +24,8 @@ namespace Application.Infrastructure.Persistance.Configuration
 
             builder.Property(x => x.SubmittedAt)
                 .IsRequired();
+
+            builder.HasOne(x => x.Submitter).WithMany().IsRequired();
         }
     }
 }

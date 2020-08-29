@@ -6,15 +6,18 @@ using Application.Infrastructure.Persistance;
 using AutoMapper;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.HelpRequests.Commands
 {
     public class CreateHelpRequestCommand : IRequest<HelpRequestDto>
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public DateTime? Deadline { get; set; }
+        public string Title { get; set; } = null!;
+        public string Description { get; set; } = null!;
+        public DateTime? Deadline { get; set; } = null!;
         public int Urgency { get; set; }
+        
+        public string? PhoneNumber { get; set; }
     }
 
     public class CreateHelpRequestCommandValidator : AbstractValidator<CreateHelpRequestCommand>
@@ -50,7 +53,9 @@ namespace Application.HelpRequests.Commands
         
         public async Task<HelpRequestDto> Handle(CreateHelpRequestCommand request, CancellationToken cancellationToken)
         {
-            var helpRequest = new HelpRequest(request.Title, request.Description, DateTime.UtcNow, request.Deadline, request.Urgency);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.PhoneNumber == request.PhoneNumber, cancellationToken);
+            
+            var helpRequest = new HelpRequest(request.Title, request.Description, DateTime.UtcNow, user, request.Deadline, request.Urgency);
 
             _context.Add(helpRequest);
             await _context.SaveChangesAsync(cancellationToken);
