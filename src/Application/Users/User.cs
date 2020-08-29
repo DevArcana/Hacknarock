@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using Application.HelpOffers;
+using Application.HelpRequests;
+
 namespace Application.Users
 {
     public class User
@@ -8,6 +12,8 @@ namespace Application.Users
 
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
+
+        public IEnumerable<HelpOffer> Offers { get; set; } = null!;
 
         private User()
         {

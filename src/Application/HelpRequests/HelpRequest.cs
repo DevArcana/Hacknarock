@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using Application.HelpOffers;
 using Application.Users;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.HelpRequests
 {
@@ -17,6 +20,8 @@ namespace Application.HelpRequests
         public DateTime SubmittedAt { get; set; }
         
         public User Submitter { get; set; }
+
+        public IEnumerable<HelpOffer> Offers { get; set; } = null!;
 
         private HelpRequest()
         {
