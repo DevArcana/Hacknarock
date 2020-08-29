@@ -29,13 +29,12 @@ namespace Application.HelpRequests.Queries
             _mapper = mapper;
         }
 
-        public async Task<PagedResults<HelpRequestListDto>> Handle(ListHelpRequestsQuery request, CancellationToken cancellationToken)
+        public Task<PagedResults<HelpRequestListDto>> Handle(ListHelpRequestsQuery request, CancellationToken cancellationToken)
         {
-            var helpRequests = await _context.HelpRequests.AsNoTracking()
+            return _context.HelpRequests.AsNoTracking()
+                                             .OrderByDescending(x => x.SubmittedAt)
                                              .ProjectTo<HelpRequestListDto>(_mapper.ConfigurationProvider)
                                              .PaginateAsync(request, cancellationToken);
-
-            return helpRequests;
         }
     }
 }

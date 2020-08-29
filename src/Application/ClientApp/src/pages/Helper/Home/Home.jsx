@@ -4,7 +4,8 @@ import axios from 'axios';
 import { Typography } from "@material-ui/core";
 import Post from "./Post";
 import styled from "styled-components";
-
+import BottomNav from "../../../components/BottomNav/BottomNav";
+import Box from "@material-ui/core/Box";
 const Home = (props) => {
   ///const [posts, setPosts] = useState([
   //   {
@@ -35,10 +36,14 @@ const Home = (props) => {
   }, []);
   return (
     <>
-      <StyledTypography align="center" color="textPrimary" variant="subtitle1">Help you can give in your neighbourhood!</StyledTypography>
+      <StyledTypography align="center" color="textPrimary" variant="subtitle1">
+        Help you can give in your neighbourhood!
+      </StyledTypography>
       {posts?.map((post, i) => (
         <Post post={post} key={i} />
       ))}
+      <Box mb={10} />
+      <BottomNav />
     </>
   );
 };

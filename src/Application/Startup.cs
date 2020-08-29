@@ -54,6 +54,9 @@ namespace Application
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            // Shame on you, Bartek, shame on you for uninstalling docker
+            app.UseCors(x => x.SetIsOriginAllowed(x => true).AllowAnyHeader().AllowAnyMethod().AllowAnyHeader());
 
             app.UseInfrastructure(env);
 

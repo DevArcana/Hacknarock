@@ -10,5 +10,7 @@ namespace Application.HelpRequests.Models
         public string Description { get; set; }
         public DateTime? Deadline { get; set; }
         public int Urgency { get; set; }
+        public string Submitter { get; set; } = null!;
+        public DateTime SubmittedAt { get; set; }
     }
 }
