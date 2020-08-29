@@ -1,6 +1,7 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
 import Post from "./Post";
+import BottomNav from "../../../components/BottomNav/BottomNav";
 
 const Home = (props) => {
   const posts = [
@@ -36,6 +37,7 @@ const Home = (props) => {
       {posts?.map((post, i) => (
         <Post post={post} key={i} />
       ))}
+      <BottomNav />
     </>
   );
 };
