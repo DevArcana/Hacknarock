@@ -37,7 +37,7 @@ export default function NavBar(props) {
               label="My help requests"
               value="0"
               icon={<AnnouncementOutlinedIcon />}
-              onClick={() => history.push("/helpee")}
+              onClick={() => history.push("/helpee/helprequests")}
             />
           </IconBox>
           <IconBox clone>
@@ -45,7 +45,7 @@ export default function NavBar(props) {
               label="Add request"
               value="1"
               icon={<AddCircleOutlineIcon />}
-              onClick={() => history.push("/helpee/addrequest")}
+              onClick={() => history.push("/helpee")}
             />
           </IconBox>
           <IconBox clone>
