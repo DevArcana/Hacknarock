@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Application.Controllers;
 using Application.HelpRequests.Commands;
 using Application.HelpRequests.Queries;
+using Application.Infrastructure.Common.Pagination;
 using Application.Users;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -23,12 +24,26 @@ namespace Application.HelpRequests.Controllers
         private string PhoneNumber => User.Identities.First(x => x.AuthenticationType == "StupidAuth").Name;
 
         [HttpGet]
-        public async Task<IActionResult> ListHelpRequests([FromQuery] ListHelpRequestsQuery query)
+        public async Task<IActionResult> ListHelpRequests([FromQuery] PaginationOptions paginationOptions, [FromQuery] bool my = false)
         {
             try
             {
-                query.PhoneNumber = PhoneNumber;
-                return Ok(await _mediator.Send(query));
+                if (my)
+                {
+                    return Ok(await _mediator.Send(new ListOwnHelpRequestsQuery()
+                    {
+                        PhoneNumber = PhoneNumber,
+                        Page = paginationOptions.Page,
+                        PageSize = paginationOptions.PageSize
+                    }));
+                }
+                
+                return Ok(await _mediator.Send(new ListHelpRequestsQuery()
+                {
+                    PhoneNumber = PhoneNumber,
+                    Page = paginationOptions.Page,
+                    PageSize = paginationOptions.PageSize
+                }));
             }
             catch
             {
