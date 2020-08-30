@@ -53,7 +53,7 @@ const ChooseRole = () => {
                       height: `${imageSize - 2}rem`,
                       width: `${imageSize - 2}rem`,
                     }}
-                    onClick={() => history.push(routes.pages.helpee.home)}
+                    onClick={() => history.push(routes.pages.helpee.requests)}
                   />
                 </CardContent>
               </CardActionArea>
