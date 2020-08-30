@@ -12,7 +12,7 @@ import routes from "../../routes";
 
 const helpSomeone = require("../../assets/undraw_gone_shopping_vwmc.svg");
 const getHelp = require("../../assets/undraw_to_do_list_a49b.svg");
-const imageSize = 14;
+const imageSize = 9;
 
 const ChooseRole = () => {
   const history = useHistory();
@@ -22,7 +22,7 @@ const ChooseRole = () => {
       <Box>
         <ChoiceBox>
           <BoxAndText>
-            <Typography style={{ marginLeft: "3.5rem" }}>
+            <Typography style={{ marginLeft: "1.3rem" }}>
               I would like to help
             </Typography>
             <ChoiceCard>
@@ -42,7 +42,7 @@ const ChooseRole = () => {
             </ChoiceCard>
           </BoxAndText>
           <BoxAndText>
-            <Typography style={{ marginLeft: "5rem" }}>I need help</Typography>
+            <Typography style={{ marginLeft: "3rem" }}>I need help</Typography>
             <ChoiceCard>
               <CardActionArea>
                 <CardContent>
