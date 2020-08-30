@@ -1,5 +1,5 @@
 import React from "react";
-import { CardContent, Typography, CardActions, IconButton } from "@material-ui/core";
+import { CardContent, Typography, IconButton } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import styled from "styled-components";
 import Box from "@material-ui/core/Box";
@@ -11,6 +11,7 @@ import "moment-timezone";
 import moment from "moment";
 import axios from "axios";
 import routes from "../../../routes";
+import Divider from "@material-ui/core/Divider";
 
 const HelpRequest = (props) => {
   const { post } = props;
@@ -23,7 +24,7 @@ const HelpRequest = (props) => {
   const onDelete = async () => {
     await axios.delete(`${routes.api.requests}/${post.id}`);
     window.location.reload(false);
-  }
+  };
 
   return (
     <PostCard>
@@ -36,12 +37,17 @@ const HelpRequest = (props) => {
         </SubtitlesBox>
         <Typography color="textSecondary">{post.description}</Typography>
         <Box mb={3} />
+        <Divider />
+        <Box mb={1} />
         {post.offers[0] !== undefined ? (
           <ContactBox>
             <Box>
               <Typography variant="h5">{post.offers[0]?.firstName}</Typography>
               <Typography>Wants to help you!</Typography>
             </Box>
+            <IconButton onClick={onDelete}>
+              <DeleteOutlined />
+            </IconButton>
             <PhoneBox clone>
               <a href={"tel:" + post.offers[0]?.phoneNumber}>
                 <PhoneInTalkOutlinedIcon />
@@ -50,18 +56,21 @@ const HelpRequest = (props) => {
           </ContactBox>
         ) : (
           <NotFoundBox>
-            <Typography color="textSecondary">
-              No help offers yet.
-            </Typography>
+            <Box
+              style={{
+                display: "flex",
+                alignContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Typography color="textSecondary">No help offers yet</Typography>
+            </Box>
+            <IconButton onClick={onDelete}>
+              <DeleteOutlined />
+            </IconButton>
           </NotFoundBox>
         )}
       </CardContent>
-
-      <CardActions>
-        <IconButton onClick={onDelete}>
-          <DeleteOutlined />
-        </IconButton>
-      </CardActions>
     </PostCard>
   );
 };
@@ -75,10 +84,13 @@ const SubtitlesBox = styled(Box)`
   justify-content: space-between;
 `;
 
-const NotFoundBox = styled(Box)``;
+const NotFoundBox = styled(Box)`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const PhoneBox = styled(Box)`
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-right: 1rem;
   color: ${theme.palette.primary.main};
 `;
