@@ -11,6 +11,7 @@ import routes from "../../routes";
 import styled from "styled-components";
 import { authenticate } from '../../authentication/StupidAuth';
 import { useHistory } from "react-router-dom";
+import Alert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,6 +37,7 @@ const Login = () => {
   const classes = useStyles();
   const history = useHistory();
   const [phone, setPhone] = useState();
+  const [errorFlag, setErrorFlag] = useState(false);
 
   const onSubmit = () => {
     if (authenticate(phone) !== null) {
@@ -87,6 +89,13 @@ const Login = () => {
           </DontBox>
         </form>
       </div>
+      {errorFlag && (
+        <AlertBox>
+          <Alert severity="error">
+            Failed to login - please recheck your credentials!
+          </Alert>
+        </AlertBox>
+      )}
     </Container>
   );
 };
@@ -96,4 +105,10 @@ const DontBox = styled(Box)`
   justify-content: center;
 `;
 
+const AlertBox = styled(Box)`
+  display: flex;
+  justify-content: center;
+  flex-direction: column-reverse;
+  margin-top: 22rem;
+`;
 export default Login;
