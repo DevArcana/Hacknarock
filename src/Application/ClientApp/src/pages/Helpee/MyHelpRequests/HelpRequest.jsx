@@ -13,7 +13,7 @@ import moment from "moment";
 import { useState } from "react";
 import axios from "axios";
 import routes from "../../../routes";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const HelpRequest = (props) => {
   const { post } = props;
@@ -29,6 +29,7 @@ const HelpRequest = (props) => {
   const onDelete = async () => {
     await axios.delete(`${routes.api.requests}/${post.id}`);
     // TODO: Reload list
+    window.location.reload(false);
   }
 
   const onSetEditable = () => {
