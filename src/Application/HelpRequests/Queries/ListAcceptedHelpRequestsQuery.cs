@@ -29,15 +29,17 @@ namespace Application.HelpRequests.Queries
             _mapper = mapper;
         }
 
-        public Task<PagedResults<HelpRequestListDto>> Handle(ListAcceptedHelpRequestsQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResults<HelpRequestListDto>> Handle(ListAcceptedHelpRequestsQuery request, CancellationToken cancellationToken)
         {
-            return _context.Users.AsNoTracking()
+            var user = await _context.Users
+                .AsNoTracking()
                 .Include(x => x.Offers)
                 .ThenInclude(x => x.Request)
-                .SelectMany(x => x.Offers.Select(x => x.Request))
-                .OrderByDescending(x => x.SubmittedAt)
-                .ProjectTo<HelpRequestListDto>(_mapper.ConfigurationProvider)
-                .PaginateAsync(request, cancellationToken);
+                .FirstOrDefaultAsync(x => x.PhoneNumber == request.PhoneNumber ,cancellationToken);
+
+            return user.Offers
+                .Select(x => _mapper.Map<HelpRequestListDto>(x.Request))
+                .Paginate(request);
         }
     }
 }

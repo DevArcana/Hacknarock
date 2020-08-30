@@ -37,10 +37,10 @@ export const AddNewRequest = (props) => {
   return (
     <>
       <Container maxWidth={"sm"}>
-        <form noValidate>
+        <form noValidate onSubmit={(event) => event.preventDefault()}>
           <StyledTypography color="textPrimary" variant="h6">
             Add new request!
-        </StyledTypography>
+          </StyledTypography>
           <DescriptionTextField
             id="outlined-multiline-flexible"
             //label="Description"
@@ -78,9 +78,14 @@ export const AddNewRequest = (props) => {
             />
           </DateBox> */}
           <ButtonBox>
-            <Button type="submit" variant="contained" color="primary" onClick={() => onSubmit()}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              onClick={() => onSubmit()}
+            >
               POST
-          </Button>
+            </Button>
           </ButtonBox>
         </form>
       </Container>
