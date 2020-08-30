@@ -24,7 +24,7 @@ export const AddNewRequest = (props) => {
   return (
     <>
       <Container maxWidth={"sm"}>
-        <StyledTypography color="textPrimary" variant="subtitle1">
+        <StyledTypography color="textPrimary" variant="h6">
           Add new request!
         </StyledTypography>
         <DescriptionTextField

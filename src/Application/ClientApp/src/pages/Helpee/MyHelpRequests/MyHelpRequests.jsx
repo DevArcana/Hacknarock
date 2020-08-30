@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography } from "@material-ui/core";
+import { Container, Grid, Typography } from "@material-ui/core";
 import NavBar from "../NavBar/NavBar";
 import Box from "@material-ui/core/Box";
 import styled from "styled-components";
@@ -23,10 +23,33 @@ const MyHelpRequests = () => {
   return (
     <>
       <Container maxWidth={"sm"}>
-        <StyledTypography>Your help requests</StyledTypography>
-        {posts.map((post) => (
-          <HelpRequest post={post} />
-        ))}
+        <StyledTypography variant={"h6"}>Your help requests</StyledTypography>
+
+        {posts.length ? (
+          posts.map((post, i) => <HelpRequest post={post} key={i} />)
+        ) : (
+          <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
+            style={{ minHeight: "100vh" }}
+          >
+            <Grid item>
+              <img
+                alt="logo"
+                style={{
+                  height: `16rem`,
+                  width: `16rem`,
+                }}
+                src={require("../../../assets/undraw_void_3ggu.png")}
+              />
+            </Grid>
+            <Typography>No results found</Typography>
+            <Box mb={16} />
+          </Grid>
+        )}
       </Container>
       <Box mb={9} />
       <NavBar />
