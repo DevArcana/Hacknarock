@@ -29,7 +29,7 @@ const HelpRequest = (props) => {
           <Box mb={3} />
           <ContactBox>
             <Box>
-              <Typography variant="h5">{post.submitter}</Typography>
+              <Typography variant="h5">{post.offers[0]?.firstName}</Typography>
               <Typography>Wants to help you!</Typography>
             </Box>
             <PhoneBox clone>
