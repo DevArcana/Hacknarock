@@ -46,7 +46,7 @@ const HelpRequest = (props) => {
             </Box>
             <PhoneBox clone>
               <a href={"tel:" + post.offers[0]?.phoneNumber}>
-                <PhoneInTalkOutlinedIcon />fix
+                <PhoneInTalkOutlinedIcon />
               </a>
             </PhoneBox>
           </ContactBox>
