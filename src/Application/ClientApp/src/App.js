@@ -17,11 +17,8 @@ function App() {
   return (
     <Switch>
       <Route path={routes.pages.login} component={Login} />
-<<<<<<< HEAD
-  
-=======
+
       <Route path={routes.pages.signup} component={Signup} />
->>>>>>> e70dd6c7a05a4614258195aa985dd3711a2141cb
 
       <Route path={routes.pages.helpee.home} component={MyHelpRequests} />
       <Route path={routes.pages.helpee.requests} component={AddNewRequest} />
