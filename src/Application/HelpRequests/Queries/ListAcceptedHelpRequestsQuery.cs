@@ -37,10 +37,9 @@ namespace Application.HelpRequests.Queries
                 .ThenInclude(x => x.Request)
                 .FirstOrDefaultAsync(x => x.PhoneNumber == request.PhoneNumber ,cancellationToken);
 
-            return await user.Offers.AsQueryable()
-                .Select(x => x.Request)
-                .ProjectTo<HelpRequestListDto>(_mapper.ConfigurationProvider)
-                .PaginateAsync(request, cancellationToken);
+            return user.Offers
+                .Select(x => _mapper.Map<HelpRequestListDto>(x.Request))
+                .Paginate(request);
         }
     }
 }
