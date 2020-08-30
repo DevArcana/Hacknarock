@@ -31,7 +31,7 @@ const HelpRequest = (props) => {
             <Box>
               <Typography variant="h5">{post.offers[0]?.firstName}</Typography>
               <a href={"tel:"+post.offers[0]?.phoneNumber}>
-              <Typography >Wants to help you!</Typography>
+                <Typography >Wants to help you!</Typography>
               </a>
             </Box>
             <PhoneBox clone>
