@@ -24,10 +24,20 @@ namespace Application.HelpRequests.Controllers
         private string PhoneNumber => User.Identities.First(x => x.AuthenticationType == "StupidAuth").Name;
 
         [HttpGet]
-        public async Task<IActionResult> ListHelpRequests([FromQuery] PaginationOptions paginationOptions, [FromQuery] bool my = false)
+        public async Task<IActionResult> ListHelpRequests([FromQuery] PaginationOptions paginationOptions, [FromQuery] bool my = false, [FromQuery] bool accepted = false)
         {
             try
             {
+                if (accepted)
+                {
+                    return Ok(await _mediator.Send(new ListAcceptedHelpRequestsQuery()
+                    {
+                        PhoneNumber = PhoneNumber,
+                        Page = paginationOptions.Page,
+                        PageSize = paginationOptions.PageSize
+                    }));
+                }
+                
                 if (my)
                 {
                     return Ok(await _mediator.Send(new ListOwnHelpRequestsQuery()
