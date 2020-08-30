@@ -4,6 +4,7 @@ export const routes = {
     helper: { home: "/helper", help: "/help" },
     helpee: { home: "/helpee", requests: "/helprequests" },
     login: "/login",
+    signup: "/signup",
     chooseRole: "/",
   },
 };
