@@ -8,6 +8,7 @@ import Moment from "react-moment";
 
 import { useHistory } from "react-router-dom";
 import routes from "../../../routes";
+import axios from 'axios';
 
 const Post = (props) => {
   const { post } = props;
@@ -17,9 +18,9 @@ const Post = (props) => {
     return <Moment format="MM/DD HH:mm">{post.submittedAt}</Moment>;
   };
 
-  const clickHelp = () => {
-    history.push(routes.pages.helpee.requests);
-    // POST HELP
+  const clickHelp = async () => {
+    await axios.post(`${routes.api.requests}/${post.id}`, { accept: true });
+    history.push(routes.pages.helper.help);
   };
   return (
     <>

@@ -33,7 +33,9 @@ namespace Application.HelpRequests.Queries
         {
             return _context.HelpRequests.AsNoTracking()
                 .Include(x => x.Submitter)
-                .Where(x => x.Submitter.PhoneNumber != request.PhoneNumber)
+                .Include(x => x.Offers)
+                .ThenInclude(x => x.User)
+                .Where(x => x.Submitter.PhoneNumber != request.PhoneNumber && x.Offers.All(y => y.User.PhoneNumber != request.PhoneNumber))
                 .OrderByDescending(x => x.SubmittedAt)
                 .ProjectTo<HelpRequestListDto>(_mapper.ConfigurationProvider)
                 .PaginateAsync(request, cancellationToken);
