@@ -9,6 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import routes from "../../routes";
 import styled from "styled-components";
+import Alert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -33,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 const Login = () => {
   const classes = useStyles();
   const [phone, setPhone] = useState();
+  const [errorFlag, setErrorFlag] = useState(false);
 
   const onSubmit = () => {
     console.log(phone);
@@ -82,6 +84,13 @@ const Login = () => {
           </DontBox>
         </form>
       </div>
+      {errorFlag && (
+        <AlertBox>
+          <Alert severity="error">
+            Failed to login - please recheck your credentials!
+          </Alert>
+        </AlertBox>
+      )}
     </Container>
   );
 };
@@ -91,4 +100,10 @@ const DontBox = styled(Box)`
   justify-content: center;
 `;
 
+const AlertBox = styled(Box)`
+  display: flex;
+  justify-content: center;
+  flex-direction: column-reverse;
+  margin-top: 22rem;
+`;
 export default Login;
