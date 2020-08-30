@@ -1,6 +1,10 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+<<<<<<< HEAD
+import { Login } from "./pages/Login/Login";
+=======
 import Login from "./pages/Auth/Login";
+>>>>>>> e70dd6c7a05a4614258195aa985dd3711a2141cb
 import { Home as HelperHome } from "./pages/Helper/Home/Home";
 import MyHelpOffers from "./pages/Helper/MyHelpOffers/MyHelpOffers";
 import MyHelpRequests from "./pages/Helpee/MyHelpRequests/MyHelpRequests";
@@ -13,6 +17,7 @@ function App() {
   return (
     <Switch>
       <Route path={routes.pages.login} component={Login} />
+
       <Route path={routes.pages.signup} component={Signup} />
 
       <Route path={routes.pages.helpee.home} component={MyHelpRequests} />
