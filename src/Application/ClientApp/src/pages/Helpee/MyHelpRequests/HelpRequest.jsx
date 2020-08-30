@@ -6,19 +6,21 @@ import Box from "@material-ui/core/Box";
 import Moment from "react-moment";
 import PhoneInTalkOutlinedIcon from "@material-ui/icons/PhoneInTalkOutlined";
 import theme from "../../../theme";
+import "moment-timezone";
+import moment from "moment";
 
 const HelpRequest = (props) => {
   const { post } = props;
+  const time = post.submittedAt;
 
   const datePipe = () => {
-    return <Moment format="MM/DD HH:mm">{post.submittedAt}</Moment>;
+    return <Moment format="MM/DD HH:mm">{moment(time).add(2, "hours")}</Moment>;
   };
-
 
   return (
     <>
       <PostCard>
-        <CardContent>
+        <CardContent style={{ wordWrap: "break-word" }}>
           <SubtitlesBox>
             <Typography color="textSecondary" variant="subtitle2">
               {post.title}
@@ -27,17 +29,27 @@ const HelpRequest = (props) => {
           </SubtitlesBox>
           <Typography color="textSecondary">{post.description}</Typography>
           <Box mb={3} />
-          <ContactBox>
-            <Box>
-              <Typography variant="h5">{post.offers[0]?.firstName}</Typography>
-              <Typography >Wants to help you!</Typography>
-            </Box>
-            <PhoneBox clone>
-                <a href={"tel:"+post.offers[0]?.phoneNumber}>
-                    <PhoneInTalkOutlinedIcon />
+          {post.offers[0] !== undefined ? (
+            <ContactBox>
+              <Box>
+                <Typography variant="h5">
+                  {post.offers[0]?.firstName}
+                </Typography>
+                <Typography>Wants to help you!</Typography>
+              </Box>
+              <PhoneBox clone>
+                <a href={"tel:" + post.offers[0]?.phoneNumber}>
+                  <PhoneInTalkOutlinedIcon />
                 </a>
-            </PhoneBox>
-          </ContactBox>
+              </PhoneBox>
+            </ContactBox>
+          ) : (
+            <NotFoundBox>
+              <Typography color="textSecondary">
+                NOBODY WANTS TO HELP YOU
+              </Typography>
+            </NotFoundBox>
+          )}
         </CardContent>
       </PostCard>
     </>
@@ -52,6 +64,8 @@ const SubtitlesBox = styled(Box)`
   display: flex;
   justify-content: space-between;
 `;
+
+const NotFoundBox = styled(Box)``;
 
 const PhoneBox = styled(Box)`
   margin-top: 2rem;

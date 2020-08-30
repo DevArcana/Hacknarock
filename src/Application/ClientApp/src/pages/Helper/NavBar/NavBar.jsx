@@ -48,11 +48,11 @@ export default function NavBar(props) {
           <BottomNavigationAction
             label="Log out"
             value="logout"
-            icon={<ExitToAppIcon
-              onClick={() => {
-                logOut();
-                history.push("/login")
-            }}/>}
+            icon={<ExitToAppIcon />}
+            onClick={() => {
+              logOut();
+              history.push("/login");
+            }}
           />
         </BottomNavigation>
       </BottomNavigationBox>

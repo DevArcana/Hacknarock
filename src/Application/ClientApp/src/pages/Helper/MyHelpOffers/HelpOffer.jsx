@@ -9,13 +9,16 @@ import Moment from "react-moment";
 import { useHistory } from "react-router-dom";
 import routes from "../../../routes";
 import axios from "axios";
+import moment from "moment";
+import "moment-timezone";
 
 const HelpOffer = (props) => {
   const { post } = props;
   let history = useHistory();
+  const time = post.submittedAt;
 
   const datePipe = () => {
-    return <Moment format="MM/DD HH:mm">{post.submittedAt}</Moment>;
+    return <Moment format="MM/DD HH:mm">{moment(time).add(2, "hours")}</Moment>;
   };
 
   const clickHelp = async () => {
@@ -25,7 +28,7 @@ const HelpOffer = (props) => {
   return (
     <>
       <PostCard>
-        <CardContent>
+        <CardContent style={{ wordWrap: "break-word" }}>
           <SubtitlesBox>
             <Typography color="textSecondary" variant="subtitle2">
               {post.title}

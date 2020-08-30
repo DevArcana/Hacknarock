@@ -18,6 +18,7 @@
     "fontsource-roboto": "^3.0.3",
     "local-storage": "^2.0.0",
     "moment": "^2.27.0",
+    "moment-timezone": "^0.5.31",
     "prettier": "^2.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

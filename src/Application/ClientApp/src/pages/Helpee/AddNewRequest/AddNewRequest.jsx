@@ -7,8 +7,8 @@ import Select from "@material-ui/core/Select";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import NavBar from "../NavBar/NavBar";
-import routes from '../../../routes';
-import axios from 'axios';
+import routes from "../../../routes";
+import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 export const AddNewRequest = (props) => {
@@ -26,12 +26,14 @@ export const AddNewRequest = (props) => {
   };
 
   const onSubmit = () => {
-    axios.post(routes.api.requests, {
-      title: selectedCategory,
-      description: value
-    }).then(x => {
-      history.push("/helpee/");
-    });
+    axios
+      .post(routes.api.requests, {
+        title: selectedCategory,
+        description: value,
+      })
+      .then((x) => {
+        history.push("/helpee");
+      });
   };
 
   return (
@@ -46,7 +48,7 @@ export const AddNewRequest = (props) => {
             //label="Description"
             multiline
             placeholder="Describe what support you need"
-            rowsMax={4}
+            rowsMax={22}
             value={value}
             onChange={handleChange}
             variant="outlined"
@@ -64,9 +66,9 @@ export const AddNewRequest = (props) => {
             ))}
           </SelectCategory>
           <Box mt={2} />
-          <Typography>Set deadline</Typography>
+          {/* <Typography>Set deadline</Typography>
           <Box mt={2} />
-          {/* <DateBox clone>
+          <DateBox clone>
             <TextField
               id="date"
               type="date"
