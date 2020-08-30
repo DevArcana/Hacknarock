@@ -21,7 +21,7 @@ const HelpRequest = (props) => {
         <CardContent>
           <SubtitlesBox>
             <Typography color="textSecondary" variant="subtitle2">
-              Your request
+              {post.title}
             </Typography>
             <Typography>{datePipe()}</Typography>
           </SubtitlesBox>
@@ -29,7 +29,7 @@ const HelpRequest = (props) => {
           <Box mb={3} />
           <ContactBox>
             <Box>
-              <Typography variant="h5">{post.title}</Typography>
+              <Typography variant="h5">{post.submitter}</Typography>
               <Typography>Wants to help you!</Typography>
             </Box>
             <PhoneBox clone>

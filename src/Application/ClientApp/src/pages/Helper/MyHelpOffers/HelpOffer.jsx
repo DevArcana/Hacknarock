@@ -28,11 +28,11 @@ const HelpOffer = (props) => {
         <CardContent>
           <SubtitlesBox>
             <Typography color="textSecondary" variant="subtitle2">
-              Looks for help
+              {post.title}
             </Typography>
             <Typography>{datePipe()}</Typography>
           </SubtitlesBox>
-          <TitleTypography variant="h5">{post.title}</TitleTypography>
+          <TitleTypography variant="h5">{post.submitter}</TitleTypography>
           <Typography color="textSecondary" noWrap>
             {post.description}
           </Typography>
