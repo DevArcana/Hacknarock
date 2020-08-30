@@ -6,7 +6,6 @@ import Box from "@material-ui/core/Box";
 import Moment from "react-moment";
 import PhoneInTalkOutlinedIcon from "@material-ui/icons/PhoneInTalkOutlined";
 import theme from "../../../theme";
-import {Linking} from 'react-native'
 
 const HelpRequest = (props) => {
   const { post } = props;
@@ -33,8 +32,10 @@ const HelpRequest = (props) => {
               <Typography variant="h5">{post.offers[0]?.firstName}</Typography>
               <Typography >Wants to help you!</Typography>
             </Box>
-            <PhoneBox onClick={Linking.openURL(`tel:${post.offers[0]?.phoneNumbe}`)} clone>
-              <PhoneInTalkOutlinedIcon />
+            <PhoneBox clone>
+                <a href={"tel:"+post.offers[0]?.phoneNumber}>
+                    <PhoneInTalkOutlinedIcon />
+                </a>
             </PhoneBox>
           </ContactBox>
         </CardContent>
