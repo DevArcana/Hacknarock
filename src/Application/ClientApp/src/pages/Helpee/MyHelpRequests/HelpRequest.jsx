@@ -7,12 +7,13 @@ import Moment from "react-moment";
 import PhoneInTalkOutlinedIcon from "@material-ui/icons/PhoneInTalkOutlined";
 import theme from "../../../theme";
 
-const Post = (props) => {
+const HelpRequest = (props) => {
   const { post } = props;
 
   const datePipe = () => {
-    return <Moment format="MM/DD HH:mm">{post.createdAt}</Moment>;
+    return <Moment format="MM/DD HH:mm">{post.submittedAt}</Moment>;
   };
+
 
   return (
     <>
@@ -28,7 +29,7 @@ const Post = (props) => {
           <Box mb={3} />
           <ContactBox>
             <Box>
-              <Typography variant="h5">CHANGE ME</Typography>
+              <Typography variant="h5">{post.title}</Typography>
               <Typography>Wants to help you!</Typography>
             </Box>
             <PhoneBox clone>
@@ -61,4 +62,4 @@ const ContactBox = styled(Box)`
   justify-content: space-between;
 `;
 
-export default Post;
+export default HelpRequest;
