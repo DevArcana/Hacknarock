@@ -40,7 +40,7 @@ const Post = (props) => {
           </Typography>
           <ButtonBox>
             <Button variant="contained" color="primary" onClick={clickHelp}>
-              HELP
+              OFFER HELP
             </Button>
           </ButtonBox>
         </CardContent>

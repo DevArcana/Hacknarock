@@ -11,6 +11,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { useHistory, useLocation } from "react-router-dom";
 import { logOut } from "../../../authentication/StupidAuth";
 import "./NavBar.css";
+
 export default function NavBar(props) {
   const history = useHistory();
 
@@ -40,7 +41,7 @@ export default function NavBar(props) {
             onClick={() => history.push("/helper")}
           />
           <BottomNavigationAction
-            label="People I'm helping"
+            label="Currently helping"
             value={1}
             icon={<AccountCircleIcon />}
             onClick={() => history.push("/helper/help")}

@@ -37,7 +37,7 @@ export default function NavBar(props) {
           showLabels
         >
           <BottomNavigationAction
-            label="My help requests"
+            label="My requests"
             value={0}
             icon={<AnnouncementOutlinedIcon />}
             onClick={() => history.push(routes.pages.helpee.requests)}
@@ -54,7 +54,7 @@ export default function NavBar(props) {
             icon={<ExitToAppIcon />}
             onClick={() => {
               logOut();
-              history.push("/login")
+              history.push("/login");
             }}
           />
         </BottomNavigation>
