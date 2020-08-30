@@ -12,7 +12,7 @@ const MyHelpRequests = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(`${routes.api.requests}?me=true`);
+      const result = await axios(`${routes.api.requests}?my=true`);
       console.log(result.data.results);
       setPosts(result.data.results);
     };
