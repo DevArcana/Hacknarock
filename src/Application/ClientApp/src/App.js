@@ -15,21 +15,6 @@ function App() {
       <Route path={routes.pages.login} component={Login} />
       <Route path={routes.pages.signup} component={Signup} />
 
-      {/*<PrivateRoute*/}
-      {/*  path="/help"*/}
-      {/*  component={MyHelpOffers}*/}
-      {/*  isAuthenticated={isAuthenticated}*/}
-      {/*/>*/}
-      {/*<PrivateRoute*/}
-      {/*  path="/addrequest"*/}
-      {/*  component={HelpeeHome}*/}
-      {/*  isAuthenticated={isAuthenticated}*/}
-      {/*/>*/}
-      {/*<PrivateRoute*/}
-      {/*  path="/"*/}
-      {/*  component={HelperHome}*/}
-      {/*  isAuthenticated={isAuthenticated}*/}
-      {/*/>*/}
       <Route path={routes.pages.helpee.requests} component={MyHelpRequests} />
       <Route path={routes.pages.helpee.home} component={AddNewRequest} />
       <Route path={routes.pages.helper.help} component={MyHelpOffers} />
