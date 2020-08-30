@@ -15,7 +15,7 @@ namespace Application.HelpRequests.Models
         
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<HelpRequest, HelpRequestDto>()
+            profile.CreateMap<HelpRequest, HelpRequestListDto>()
                 .ForMember(x => x.Submitter, dest => dest.MapFrom(src => src.Submitter.FirstName));
         }
     }
