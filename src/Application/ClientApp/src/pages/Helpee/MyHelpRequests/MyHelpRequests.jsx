@@ -6,19 +6,17 @@ import styled from "styled-components";
 import HelpRequest from "./HelpRequest";
 
 const MyHelpRequests = () => {
-  const posts = [
-    {
-      title: "Piotr",
-      createdAt: "05.11 12:35",
-      description: "Looking for some to do shopping for me!",
-    },
-    {
-      title: "Bartek",
-      createdAt: "05.11 12:35",
-      description:
-        "I am looking for someone to deliver a package to my friend.",
-    },
-  ];
+
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(`${routes.api.requests}?me=true`);
+      console.log(result.data.results);
+      setPosts(result.data.results);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
