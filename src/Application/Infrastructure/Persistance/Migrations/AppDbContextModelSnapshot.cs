@@ -19,6 +19,21 @@ namespace Application.Infrastructure.Persistance.Migrations
                 .HasAnnotation("ProductVersion", "3.1.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            modelBuilder.Entity("Application.HelpOffers.HelpOffer", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("RequestId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("UserId", "RequestId");
+
+                    b.HasIndex("RequestId");
+
+                    b.ToTable("HelpOffers");
+                });
+
             modelBuilder.Entity("Application.HelpRequests.HelpRequest", b =>
                 {
                     b.Property<int>("Id")
@@ -85,6 +100,21 @@ namespace Application.Infrastructure.Persistance.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Application.HelpOffers.HelpOffer", b =>
+                {
+                    b.HasOne("Application.HelpRequests.HelpRequest", "Request")
+                        .WithMany("Offers")
+                        .HasForeignKey("RequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Application.Users.User", "User")
+                        .WithMany("Offers")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Application.HelpRequests.HelpRequest", b =>

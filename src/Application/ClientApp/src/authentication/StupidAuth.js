@@ -12,6 +12,11 @@ if (user !== null) {
 
 const isAuthenticated = () => user !== null;
 
+const logOut = () => {
+  user = null;
+  ls.set("user", user);
+}
+
 const createUser = async (phoneNumber, firstName, lastName) => {
   try {
     const response = await axios.post(`${routes.api.users}`, {
@@ -44,4 +49,4 @@ const authenticate = async (phoneNumber) => {
 
 const getUser = () => user;
 
-export { isAuthenticated, createUser, authenticate, getUser };
+export { isAuthenticated, createUser, authenticate, getUser, logOut };

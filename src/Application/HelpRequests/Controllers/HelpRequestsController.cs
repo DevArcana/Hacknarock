@@ -2,7 +2,10 @@
 using System.Threading.Tasks;
 using Application.Controllers;
 using Application.HelpRequests.Commands;
+using Application.HelpRequests.Models;
 using Application.HelpRequests.Queries;
+using Application.Infrastructure.Common.Exceptions;
+using Application.Infrastructure.Common.Pagination;
 using Application.Users;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -23,12 +26,36 @@ namespace Application.HelpRequests.Controllers
         private string PhoneNumber => User.Identities.First(x => x.AuthenticationType == "StupidAuth").Name;
 
         [HttpGet]
-        public async Task<IActionResult> ListHelpRequests([FromQuery] ListHelpRequestsQuery query)
+        public async Task<IActionResult> ListHelpRequests([FromQuery] PaginationOptions paginationOptions, [FromQuery] bool my = false, [FromQuery] bool accepted = false)
         {
             try
             {
-                query.PhoneNumber = PhoneNumber;
-                return Ok(await _mediator.Send(query));
+                if (accepted)
+                {
+                    return Ok(await _mediator.Send(new ListAcceptedHelpRequestsQuery()
+                    {
+                        PhoneNumber = PhoneNumber,
+                        Page = paginationOptions.Page,
+                        PageSize = paginationOptions.PageSize
+                    }));
+                }
+                
+                if (my)
+                {
+                    return Ok(await _mediator.Send(new ListOwnHelpRequestsQuery()
+                    {
+                        PhoneNumber = PhoneNumber,
+                        Page = paginationOptions.Page,
+                        PageSize = paginationOptions.PageSize
+                    }));
+                }
+                
+                return Ok(await _mediator.Send(new ListHelpRequestsQuery()
+                {
+                    PhoneNumber = PhoneNumber,
+                    Page = paginationOptions.Page,
+                    PageSize = paginationOptions.PageSize
+                }));
             }
             catch
             {
@@ -58,6 +85,28 @@ namespace Application.HelpRequests.Controllers
             try
             {
                 return Ok(await _mediator.Send(query));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        
+        [HttpPost("{id}")]
+        public async Task<IActionResult> GetHelpRequest(int id, [FromBody] AcceptRequestDto accept)
+        {
+            try
+            {
+                return Ok(await _mediator.Send(new AcceptHelpRequestCommand
+                {
+                    Accept = accept.Accept,
+                    RequestId = id,
+                    PhoneNumber = PhoneNumber
+                }));
+            }
+            catch (NotFoundException notFound)
+            {
+                return NotFound();
             }
             catch
             {

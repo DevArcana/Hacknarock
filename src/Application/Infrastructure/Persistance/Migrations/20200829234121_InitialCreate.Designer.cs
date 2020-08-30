@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Application.Infrastructure.Persistance.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200829160352_AddUsersTable")]
-    partial class AddUsersTable
+    [Migration("20200829234121_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,6 +39,9 @@ namespace Application.Infrastructure.Persistance.Migrations
                     b.Property<DateTime>("SubmittedAt")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<int>("SubmitterId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("character varying(100)")
@@ -51,6 +54,8 @@ namespace Application.Infrastructure.Persistance.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SubmitterId");
+
                     b.ToTable("HelpRequests");
                 });
 
@@ -62,22 +67,35 @@ namespace Application.Infrastructure.Persistance.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Guid")
                         .IsRequired()
-                        .HasColumnType("character varying(32)")
-                        .HasMaxLength(32);
+                        .HasColumnType("character varying(64)")
+                        .HasMaxLength(64);
 
                     b.Property<string>("LastName")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasColumnType("character varying(128)")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("character varying(16)")
+                        .HasMaxLength(16);
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Guid")
+                    b.HasIndex("PhoneNumber")
                         .IsUnique();
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Application.HelpRequests.HelpRequest", b =>
+                {
+                    b.HasOne("Application.Users.User", "Submitter")
+                        .WithMany()
+                        .HasForeignKey("SubmitterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

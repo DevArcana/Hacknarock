@@ -8,6 +8,7 @@ import theme from "../../../theme";
 import AnnouncementOutlinedIcon from "@material-ui/icons/AnnouncementOutlined";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { useHistory, useLocation } from "react-router-dom";
+import { logOut } from "../../../authentication/StupidAuth";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import "./NavBar.css";
 import routes from "../../../routes";
@@ -51,6 +52,10 @@ export default function NavBar(props) {
             label="Log out"
             value="logout"
             icon={<ExitToAppIcon />}
+            onClick={() => {
+              logOut();
+              history.push("/login")
+            }}
           />
         </BottomNavigation>
       </BottomNavigationBox>
