@@ -8,9 +8,9 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./theme";
 import "fontsource-roboto";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Redirect } from "react-router-dom";
 
-// import { authenticate, getUser, createUser, isAuthenticated } from './authentication/StupidAuth';
+import { isAuthenticated } from './authentication/StupidAuth';
 
 // const auth = async () => {
 //   if (await authenticate('phone number goes here')) {
@@ -35,6 +35,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
   <Router>
+    {isAuthenticated() ? <></> : <Redirect to="login"></Redirect>}
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <App />

@@ -9,6 +9,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import routes from "../../routes";
 import styled from "styled-components";
+import { authenticate } from '../../authentication/StupidAuth';
+import { useHistory } from "react-router-dom";
 import Alert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles((theme) => ({
@@ -33,11 +35,14 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
   const classes = useStyles();
+  const history = useHistory();
   const [phone, setPhone] = useState();
   const [errorFlag, setErrorFlag] = useState(false);
 
   const onSubmit = () => {
-    console.log(phone);
+    if (authenticate(phone) !== null) {
+      history.push("/");
+    }
   };
 
   return (
