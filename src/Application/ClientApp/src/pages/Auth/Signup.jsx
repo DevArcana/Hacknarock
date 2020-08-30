@@ -12,6 +12,8 @@ import Container from "@material-ui/core/Container";
 import routes from "../../routes";
 import styled from "styled-components";
 import Box from "@material-ui/core/Box";
+import { createUser } from "../../authentication/StupidAuth";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,9 +40,12 @@ export default function Signup() {
   const [name, setName] = useState();
   const [last, setLast] = useState();
   const [phone, setPhone] = useState();
+  const history = useHistory();
 
-  const onSubmit = () => {
-    console.log(name, last, phone);
+  const onSubmit = async () => {
+    if (await createUser(phone, name, last) !== null) {
+      history.push("/");
+    }
   };
 
   return (
@@ -53,7 +58,11 @@ export default function Signup() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form
+          className={classes.form}
+          noValidate
+          onSubmit={(event) => event.preventDefault()}
+        >
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField

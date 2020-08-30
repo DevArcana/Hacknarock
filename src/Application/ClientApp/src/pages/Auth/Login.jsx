@@ -39,8 +39,8 @@ const Login = () => {
   const [phone, setPhone] = useState();
   const [errorFlag, setErrorFlag] = useState(false);
 
-  const onSubmit = () => {
-    if (authenticate(phone) !== null) {
+  const onSubmit = async () => {
+    if (await authenticate(phone) !== null) {
       setErrorFlag(false);
       history.push("/");
     } else {
@@ -63,7 +63,7 @@ const Login = () => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={(event) => event.preventDefault()}>
           <TextField
             variant="outlined"
             margin="normal"

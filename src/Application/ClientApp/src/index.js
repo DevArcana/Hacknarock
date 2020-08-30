@@ -8,38 +8,14 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./theme";
 import "fontsource-roboto";
-import { BrowserRouter as Router, Redirect } from "react-router-dom";
-
-import { isAuthenticated } from './authentication/StupidAuth';
-
-// const auth = async () => {
-//   if (await authenticate('phone number goes here')) {
-//     console.log("Successfully logged in.")
-//     console.log(getUser());
-//   } else {
-//     console.log('No such user! Creating one.');
-
-//     await createUser('phone number goes here', 'name goes here', 'surname goes here');
-
-//     if (isAuthenticated()) {
-//       console.log("Created new user.")
-//       console.log(getUser());
-//     } else {
-//       console.log("Well, fuck you too.");
-//     }
-//   }
-// }
-
-// auth();
-
+import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
   <Router>
-    {isAuthenticated() ? <></> : <Redirect to="login"></Redirect>}
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
   </Router>,
   document.getElementById("root")
 );
