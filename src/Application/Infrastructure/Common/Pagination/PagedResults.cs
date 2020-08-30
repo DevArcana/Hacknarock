@@ -64,6 +64,20 @@ namespace Application.Infrastructure.Common.Pagination
             return new PagedResults<T>(results, totalItemsCount, paginationOptions.Page, paginationOptions.PageSize);
         }
         
+        public static PagedResults<T> Paginate(IEnumerable<T> enumerable, PaginationOptions paginationOptions)
+        {
+            VerifyPaginationOptions(paginationOptions);
+            
+            var results = enumerable
+                .Skip((1 - paginationOptions.Page) * paginationOptions.PageSize)
+                .Take(paginationOptions.PageSize)
+                .ToList();
+
+            var totalItemsCount = enumerable.Count();
+            
+            return new PagedResults<T>(results, totalItemsCount, paginationOptions.Page, paginationOptions.PageSize);
+        }
+        
         public static async Task<PagedResults<T>> PaginateAsync(IQueryable<T> queryable, PaginationOptions paginationOptions, CancellationToken cancellationToken = default)
         {
             VerifyPaginationOptions(paginationOptions);
