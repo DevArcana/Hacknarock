@@ -15,8 +15,8 @@ function App() {
       <Route path={routes.pages.login} component={Login} />
       <Route path={routes.pages.signup} component={Signup} />
 
-      <Route path={routes.pages.helpee.home} component={MyHelpRequests} />
-      <Route path={routes.pages.helpee.requests} component={AddNewRequest} />
+      <Route path={routes.pages.helpee.home} component={AddNewRequest} />
+      <Route path={routes.pages.helpee.requests} component={MyHelpRequests} />
       <Route path={routes.pages.helper.help} component={MyHelpOffers} />
       <Route path={routes.pages.helper.home} component={HelperHome} />
       <Route path={routes.pages.chooseRole} component={ChooseRole} />
