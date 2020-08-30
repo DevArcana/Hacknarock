@@ -1,5 +1,5 @@
 import React from "react";
-import { CardContent, Typography, CardActions, Button, IconButton } from "@material-ui/core";
+import { CardContent, Typography, CardActions, IconButton } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import styled from "styled-components";
 import Box from "@material-ui/core/Box";
@@ -18,7 +18,7 @@ import { useHistory } from "react-router-dom";
 const HelpRequest = (props) => {
   const { post } = props;
   const time = post.submittedAt;
-  const history = useHistory();
+  // const history = useHistory();
 
   const [isEditable, setIsEditable] = useState(false);
 
