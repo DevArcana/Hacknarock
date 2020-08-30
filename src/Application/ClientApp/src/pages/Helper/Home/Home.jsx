@@ -7,7 +7,6 @@ import styled from "styled-components";
 import Box from "@material-ui/core/Box";
 import NavBar from "../NavBar/NavBar";
 import Container from "@material-ui/core/Container";
-import routes from "../../../routes";
 
 export const Home = (props) => {
   const [posts, setPosts] = useState([]);

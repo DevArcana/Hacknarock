@@ -4,7 +4,6 @@ import NavBar from "../NavBar/NavBar";
 import Box from "@material-ui/core/Box";
 import styled from "styled-components";
 import HelpRequest from "./HelpRequest";
-import Post from "../../Helper/Home/Post";
 
 const MyHelpRequests = () => {
   const posts = [
