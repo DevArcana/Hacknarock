@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -32,6 +32,11 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
   const classes = useStyles();
+  const [phone, setPhone] = useState();
+
+  const onSubmit = () => {
+    console.log(phone);
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -58,6 +63,7 @@ const Login = () => {
             name="email"
             autoComplete="tel"
             autoFocus
+            onChange={(e) => setPhone(e.target.value)}
           />
           <Button
             type="submit"
@@ -65,6 +71,7 @@ const Login = () => {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={() => onSubmit()}
           >
             Sign In
           </Button>

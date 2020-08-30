@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -35,6 +35,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Signup() {
   const classes = useStyles();
+  const [name, setName] = useState();
+  const [last, setLast] = useState();
+  const [phone, setPhone] = useState();
+
+  const onSubmit = () => {
+    console.log(name, last, phone);
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -58,6 +65,7 @@ export default function Signup() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                onChange={(e) => setName(e.target.value)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -69,6 +77,7 @@ export default function Signup() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                onChange={(e) => setLast(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -80,6 +89,7 @@ export default function Signup() {
                 label="Phone number"
                 id="phoneNumber"
                 autoComplete="tel"
+                onChange={(e) => setPhone(e.target.value)}
               />
             </Grid>
           </Grid>
@@ -89,6 +99,7 @@ export default function Signup() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={() => onSubmit()}
           >
             Sign Up
           </Button>
