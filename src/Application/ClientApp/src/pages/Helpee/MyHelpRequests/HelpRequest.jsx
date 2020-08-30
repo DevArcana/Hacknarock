@@ -53,7 +53,7 @@ const HelpRequest = (props) => {
         ) : (
           <NotFoundBox>
             <Typography color="textSecondary">
-              NOBODY WANTS TO HELP YOU
+              No help offers yet.
             </Typography>
           </NotFoundBox>
         )}
