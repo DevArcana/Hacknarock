@@ -103,9 +103,9 @@ const StyledTypography = styled(Typography)`
   margin-bottom: 2rem;
 `;
 
-const DateBox = styled(Box)`
-  width: 100%;
-`;
+// const DateBox = styled(Box)`
+//   width: 100%;
+// `;
 
 const ButtonBox = styled(Box)`
   margin-top: 2rem;

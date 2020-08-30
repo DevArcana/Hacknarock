@@ -41,7 +41,10 @@ const Login = () => {
 
   const onSubmit = () => {
     if (authenticate(phone) !== null) {
+      setErrorFlag(false);
       history.push("/");
+    } else {
+      setErrorFlag(true);
     }
   };
 
