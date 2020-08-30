@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using Application.Controllers;
 using Application.HelpRequests.Commands;
+using Application.HelpRequests.Models;
 using Application.HelpRequests.Queries;
+using Application.Infrastructure.Common.Exceptions;
 using Application.Infrastructure.Common.Pagination;
 using Application.Users;
 using MediatR;
@@ -83,6 +85,28 @@ namespace Application.HelpRequests.Controllers
             try
             {
                 return Ok(await _mediator.Send(query));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        
+        [HttpPost("{id}")]
+        public async Task<IActionResult> GetHelpRequest(int id, [FromBody] AcceptRequestDto accept)
+        {
+            try
+            {
+                return Ok(await _mediator.Send(new AcceptHelpRequestCommand
+                {
+                    Accept = accept.Accept,
+                    RequestId = id,
+                    PhoneNumber = PhoneNumber
+                }));
+            }
+            catch (NotFoundException notFound)
+            {
+                return NotFound();
             }
             catch
             {
