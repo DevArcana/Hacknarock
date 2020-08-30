@@ -35,9 +35,7 @@ const Post = (props) => {
             <Typography>{datePipe()}</Typography>
           </SubtitlesBox>
           <TitleTypography variant="h5">{post.submitter}</TitleTypography>
-          <Typography color="textSecondary" noWrap>
-            {post.description}
-          </Typography>
+          <Typography color="textSecondary">{post.description}</Typography>
           <ButtonBox>
             <Button variant="contained" color="primary" onClick={clickHelp}>
               OFFER HELP
